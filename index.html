@@ -134,7 +134,7 @@ hr.div{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 
 .mod-check{position:absolute;bottom:14px;right:14px;width:18px;height:18px;border-radius:50%;background:var(--c,#4F7EFF);display:none;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;}
 .mod.selected .mod-check{display:flex;}
 
-/* CALCULATOR */
+/* CALCULATOR — DESKTOP inline box */
 .calc-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px;margin-top:24px;}
 .calc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
 .calc-header h3{font-size:17px;font-weight:700;letter-spacing:-.3px;}
@@ -148,6 +148,81 @@ hr.div{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 
 .calc-result .big .a{color:var(--accent);}
 .calc-result .lbl{font-size:11.5px;color:var(--text-soft);margin-top:4px;}
 .calc-empty{font-size:13.5px;color:var(--text-soft);padding:8px 0;font-style:italic;}
+
+/* STICKY CALCULATOR BAR — mobile only */
+.sticky-calc{
+  display:none;
+  position:fixed;
+  bottom:0;left:0;right:0;
+  z-index:300;
+  background:rgba(13,16,24,0.96);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-top:1px solid var(--border-med);
+  padding:0;
+  transform:translateY(100%);
+  transition:transform .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:0 -8px 40px rgba(0,0,0,.5);
+}
+.sticky-calc.visible{transform:translateY(0);}
+.sticky-calc-pill{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:12px 20px;
+  cursor:pointer;
+  gap:12px;
+}
+.sticky-calc-pill-left{display:flex;align-items:center;gap:10px;}
+.sticky-calc-count{
+  width:26px;height:26px;border-radius:50%;
+  background:var(--accent);
+  font-family:'Cabinet Grotesk',sans-serif;
+  font-size:13px;font-weight:900;
+  color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:transform .2s;
+}
+.sticky-calc-count.pop{animation:pop .25s ease;}
+@keyframes pop{0%{transform:scale(1);}50%{transform:scale(1.35);}100%{transform:scale(1);}}
+.sticky-calc-label{font-family:'Cabinet Grotesk',sans-serif;font-size:14px;font-weight:700;color:var(--text);}
+.sticky-calc-sublabel{font-size:11.5px;color:var(--text-soft);}
+.sticky-calc-preview{display:flex;align-items:center;gap:6px;}
+.sticky-calc-stat{text-align:center;}
+.sticky-calc-stat .val{font-family:'Cabinet Grotesk',sans-serif;font-size:16px;font-weight:900;color:var(--accent);line-height:1;}
+.sticky-calc-stat .lbl{font-size:9.5px;color:var(--text-soft);letter-spacing:.04em;text-transform:uppercase;}
+.sticky-calc-sep{width:1px;height:28px;background:var(--border);}
+.sticky-calc-toggle{
+  width:28px;height:28px;border-radius:50%;
+  background:var(--surface2);
+  border:1px solid var(--border-med);
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;color:var(--text-mid);
+  transition:transform .3s;
+  flex-shrink:0;
+}
+.sticky-calc.expanded .sticky-calc-toggle{transform:rotate(180deg);}
+
+/* EXPANDED DRAWER */
+.sticky-calc-drawer{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1);
+}
+.sticky-calc.expanded .sticky-calc-drawer{max-height:320px;}
+.sticky-calc-drawer-inner{padding:0 20px 20px;}
+.sticky-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px;min-height:24px;}
+.sticky-chip{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:500;padding:4px 10px;border-radius:100px;background:rgba(79,126,255,.12);color:var(--accent);border:1px solid rgba(79,126,255,.2);}
+.sticky-chip button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:12px;line-height:1;padding:0;}
+.sticky-empty-msg{font-size:12.5px;color:var(--text-soft);font-style:italic;padding:4px 0;}
+.sticky-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:14px;}
+.sticky-stat-box{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 14px;}
+.sticky-stat-box .big{font-family:'Cabinet Grotesk',sans-serif;font-size:22px;font-weight:900;letter-spacing:-1px;color:var(--text);line-height:1;}
+.sticky-stat-box .big .a{color:var(--accent);}
+.sticky-stat-box .lbl{font-size:10.5px;color:var(--text-soft);margin-top:3px;}
+.sticky-cta-btn{width:100%;padding:12px;border-radius:100px;background:var(--accent);border:none;color:#fff;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer;box-shadow:0 4px 16px rgba(79,126,255,.35);transition:all .2s;}
+.sticky-cta-btn:hover{background:#6090FF;}
 
 /* HOW IT WORKS */
 .how-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -682,6 +757,47 @@ footer p{font-size:12px;color:var(--text-soft);}
   <p>DRAFT v0.4 · Kenneth, Leadly</p>
 </footer>
 
+<!-- STICKY CALCULATOR BAR (mobile) -->
+<div class="sticky-calc" id="stickyCalc">
+  <div class="sticky-calc-pill" onclick="toggleStickyCalc()">
+    <div class="sticky-calc-pill-left">
+      <div class="sticky-calc-count" id="stickyCount">0</div>
+      <div>
+        <div class="sticky-calc-label" id="stickyLabel">Select modules to see your ROI</div>
+        <div class="sticky-calc-sublabel" id="stickySubLabel">Tap modules above to calculate</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px;">
+      <div class="sticky-calc-preview" id="stickyPreview" style="display:none;">
+        <div class="sticky-calc-stat">
+          <div class="val" id="stickyHoursPreview">—</div>
+          <div class="lbl">hrs/wk</div>
+        </div>
+        <div class="sticky-calc-sep"></div>
+        <div class="sticky-calc-stat">
+          <div class="val" id="stickySavingPreview">—</div>
+          <div class="lbl">value/mo</div>
+        </div>
+      </div>
+      <div class="sticky-calc-toggle" id="stickyToggle">▲</div>
+    </div>
+  </div>
+  <div class="sticky-calc-drawer" id="stickyDrawer">
+    <div class="sticky-calc-drawer-inner">
+      <div class="sticky-chips" id="stickyChips">
+        <span class="sticky-empty-msg">No modules selected yet</span>
+      </div>
+      <div class="sticky-grid">
+        <div class="sticky-stat-box"><div class="big" id="stickyHours">—</div><div class="lbl">Hours saved / week</div></div>
+        <div class="sticky-stat-box"><div class="big" id="stickyWorkflows">—</div><div class="lbl">Workflows automated</div></div>
+        <div class="sticky-stat-box"><div class="big" id="stickySaving">—</div><div class="lbl">Est. monthly value</div></div>
+        <div class="sticky-stat-box"><div class="big" id="stickyPayback">—</div><div class="lbl">Est. payback period</div></div>
+      </div>
+      <button class="sticky-cta-btn" onclick="scrollToWaitlist();toggleStickyCalc();">Get Early Access →</button>
+    </div>
+  </div>
+</div>
+
 <script>
 function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
 function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
@@ -709,31 +825,112 @@ function showIndustry(id,btn){
 
 // MODULE CALCULATOR
 let selectedMods=[];
+let stickyExpanded=false;
+
+function toggleStickyCalc(){
+  stickyExpanded=!stickyExpanded;
+  document.getElementById('stickyCalc').classList.toggle('expanded',stickyExpanded);
+}
+
 function toggleMod(el,name,hours,saving){
   const idx=selectedMods.findIndex(m=>m.name===name);
   if(idx>-1){selectedMods.splice(idx,1);el.classList.remove('selected');}
   else{selectedMods.push({name,hours,saving});el.classList.add('selected');}
+  // pop animation on count badge
+  const cnt=document.getElementById('stickyCount');
+  cnt.classList.remove('pop');
+  void cnt.offsetWidth;
+  cnt.classList.add('pop');
   updateCalc();
 }
-function resetMods(){selectedMods=[];document.querySelectorAll('.mod').forEach(m=>m.classList.remove('selected'));updateCalc();}
+
+function resetMods(){
+  selectedMods=[];
+  document.querySelectorAll('.mod').forEach(m=>m.classList.remove('selected'));
+  updateCalc();
+}
+
 function updateCalc(){
-  const chips=document.getElementById('calcChips');
-  if(selectedMods.length===0){chips.innerHTML='<span class="calc-empty">← Select modules above to calculate your ROI</span>';['calcHours','calcWorkflows','calcSaving','calcPayback'].forEach(id=>document.getElementById(id).textContent='—');return;}
-  chips.innerHTML=selectedMods.map(m=>`<span class="calc-chip">${m.name}<button onclick="removeChip('${m.name}')">×</button></span>`).join('');
+  const n=selectedMods.length;
+
+  // ── SHARED MATHS ──
   const totalHours=selectedMods.reduce((s,m)=>s+m.hours,0);
   const monthlyValue=totalHours*4*65;
-  const setupCost=selectedMods.length<=2?1500:selectedMods.length<=5?4500:10000;
-  const monthlyFee=selectedMods.length<=2?500:selectedMods.length<=5?1500:3000;
-  const payback=Math.ceil(setupCost/(monthlyValue-monthlyFee));
-  document.getElementById('calcHours').innerHTML=`${totalHours}<span class="a">h</span>`;
-  document.getElementById('calcWorkflows').innerHTML=`${selectedMods.length*5}<span class="a">+</span>`;
-  document.getElementById('calcSaving').innerHTML=`$${(monthlyValue/1000).toFixed(1)}<span class="a">k</span>`;
-  document.getElementById('calcPayback').textContent=payback<=0?'< 1 mo':`${payback} mo`;
+  const setupCost=n<=2?1500:n<=5?4500:10000;
+  const monthlyFee=n<=2?500:n<=5?1500:3000;
+  const payback=monthlyValue-monthlyFee>0?Math.ceil(setupCost/(monthlyValue-monthlyFee)):null;
+  const paybackStr=payback===null?'—':payback<=0?'< 1 mo':`${payback} mo`;
+  const hoursStr=n>0?`${totalHours}<span class="a">h</span>`:'—';
+  const wfStr=n>0?`${n*5}<span class="a">+</span>`:'—';
+  const savStr=n>0?`$${(monthlyValue/1000).toFixed(1)}<span class="a">k</span>`:'—';
+
+  // ── DESKTOP INLINE BOX ──
+  const chips=document.getElementById('calcChips');
+  if(n===0){
+    chips.innerHTML='<span class="calc-empty">← Select modules above to calculate your ROI</span>';
+    ['calcHours','calcWorkflows','calcSaving','calcPayback'].forEach(id=>document.getElementById(id).textContent='—');
+  } else {
+    chips.innerHTML=selectedMods.map(m=>`<span class="calc-chip">${m.name}<button onclick="removeChip('${m.name}')">×</button></span>`).join('');
+    document.getElementById('calcHours').innerHTML=hoursStr;
+    document.getElementById('calcWorkflows').innerHTML=wfStr;
+    document.getElementById('calcSaving').innerHTML=savStr;
+    document.getElementById('calcPayback').textContent=paybackStr;
+  }
+
+  // ── STICKY BAR ──
+  const bar=document.getElementById('stickyCalc');
+  const isMobile=window.innerWidth<=900;
+  if(isMobile){
+    if(n>0){
+      bar.classList.add('visible');
+      document.getElementById('stickyCount').textContent=n;
+      document.getElementById('stickyLabel').textContent=n===1?'1 module selected':`${n} modules selected`;
+      document.getElementById('stickySubLabel').textContent=`Saving ~${totalHours}h/wk · Est. $${(monthlyValue/1000).toFixed(1)}k/mo value`;
+      document.getElementById('stickyPreview').style.display='flex';
+      document.getElementById('stickyHoursPreview').textContent=`${totalHours}h`;
+      document.getElementById('stickySavingPreview').textContent=`$${(monthlyValue/1000).toFixed(1)}k`;
+      // drawer
+      document.getElementById('stickyChips').innerHTML=selectedMods.map(m=>`<span class="sticky-chip">${m.name}<button onclick="removeChip('${m.name}')">×</button></span>`).join('');
+      document.getElementById('stickyHours').innerHTML=hoursStr;
+      document.getElementById('stickyWorkflows').innerHTML=wfStr;
+      document.getElementById('stickySaving').innerHTML=savStr;
+      document.getElementById('stickyPayback').textContent=paybackStr;
+    } else {
+      bar.classList.remove('visible');
+      stickyExpanded=false;
+      bar.classList.remove('expanded');
+      document.getElementById('stickyPreview').style.display='none';
+      document.getElementById('stickyCount').textContent='0';
+      document.getElementById('stickyLabel').textContent='Select modules to see your ROI';
+      document.getElementById('stickySubLabel').textContent='Tap modules above to calculate';
+      document.getElementById('stickyChips').innerHTML='<span class="sticky-empty-msg">No modules selected yet</span>';
+      ['stickyHours','stickyWorkflows','stickySaving','stickyPayback'].forEach(id=>document.getElementById(id).textContent='—');
+    }
+  }
 }
+
 function removeChip(name){
-  document.querySelectorAll('.mod').forEach(m=>{if(m.querySelector('.mod-name')&&m.querySelector('.mod-name').textContent===name)m.classList.remove('selected');});
-  selectedMods=selectedMods.filter(m=>m.name!==name);updateCalc();
+  document.querySelectorAll('.mod').forEach(m=>{
+    if(m.querySelector('.mod-name')&&m.querySelector('.mod-name').textContent===name)m.classList.remove('selected');
+  });
+  selectedMods=selectedMods.filter(m=>m.name!==name);
+  updateCalc();
 }
+
+// show sticky on mobile only
+function handleResize(){
+  const bar=document.getElementById('stickyCalc');
+  if(window.innerWidth<=900){
+    bar.style.display='block';
+    updateCalc();
+  } else {
+    bar.style.display='none';
+    bar.classList.remove('visible','expanded');
+    stickyExpanded=false;
+  }
+}
+window.addEventListener('resize',handleResize);
+handleResize();
 
 // FAQ
 function toggleFaq(btn){
