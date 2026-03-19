@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ClawFlow — Automate Your Business</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #F7F5F2;
+    --white: #FFFFFF;
+    --surface: rgba(255,255,255,0.75);
+    --surface-solid: #FFFFFF;
+    --border: rgba(0,0,0,0.07);
+    --border-med: rgba(0,0,0,0.1);
+    --text: #1A1A1A;
+    --text-mid: #555555;
+    --text-soft: #888888;
+    --accent: #E8633A;
+    --accent2: #7B6EF6;
+    --accent3: #3AB5E8;
+    --accent-soft: rgba(232,99,58,0.12);
+    --radius: 20px;
+    --radius-sm: 12px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 400;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Bricolage Grotesque', sans-serif;
+  }
+
+  .mesh {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(ellipse 80% 60% at 10% 0%, rgba(232,99,58,0.10) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 50% at 90% 10%, rgba(123,110,246,0.09) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 70% at 50% 100%, rgba(58,181,232,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 80% 60%, rgba(232,99,58,0.06) 0%, transparent 50%),
+      #F7F5F2;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 18px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(247,245,242,0.88);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .logo {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: -0.3px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    color: var(--text);
+    text-decoration: none;
+  }
+
+  .logo-mark {
+    width: 32px; height: 32px;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #E8633A 0%, #F0925A 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    box-shadow: 0 2px 8px rgba(232,99,58,0.3);
+  }
+
+  .logo-dot { color: var(--accent); }
+
+  .nav-pill {
+    background: var(--surface-solid);
+    border: 1px solid var(--border-med);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-soft);
+    font-family: 'Instrument Sans', sans-serif;
+  }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 140px 48px 80px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eyebrow-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--surface-solid);
+    border: 1px solid var(--border-med);
+    border-radius: 100px;
+    padding: 7px 16px;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--text-mid);
+    margin-bottom: 36px;
+    width: fit-content;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    animation: fadeUp 0.7s ease both;
+  }
+
+  .live-dot {
+    width: 7px; height: 7px;
+    background: var(--accent);
+    border-radius: 50%;
+    animation: breathe 2.5s ease infinite;
+    flex-shrink: 0;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(0.7); opacity: 0.5; }
+  }
+
+  .hero h1 {
+    font-size: clamp(50px, 6.5vw, 88px);
+    font-weight: 800;
+    line-height: 1.02;
+    letter-spacing: -2.5px;
+    color: var(--text);
+    max-width: 820px;
+    animation: fadeUp 0.7s 0.08s ease both;
+  }
+
+  .gradient-text {
+    background: linear-gradient(135deg, #E8633A 0%, #F0925A 50%, #7B6EF6 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-soft { color: #CCCCCC; }
+
+  .hero-sub {
+    font-size: 18px;
+    color: var(--text-mid);
+    max-width: 500px;
+    margin-top: 26px;
+    line-height: 1.75;
+    animation: fadeUp 0.7s 0.15s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 44px;
+    animation: fadeUp 0.7s 0.22s ease both;
+  }
+
+  .btn-dark {
+    background: var(--text);
+    color: white;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 600;
+    font-size: 14.5px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-dark:hover {
+    background: #2d2d2d;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.14);
+  }
+
+  .btn-text {
+    color: var(--text-mid);
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: color 0.2s;
+  }
+
+  .btn-text:hover { color: var(--text); }
+
+  .stats-row {
+    display: flex;
+    gap: 0;
+    margin-top: 72px;
+    background: var(--surface-solid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    animation: fadeUp 0.7s 0.3s ease both;
+  }
+
+  .stat {
+    flex: 1;
+    padding: 26px 30px;
+    border-right: 1px solid var(--border);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-n {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: var(--text);
+    line-height: 1;
+  }
+
+  .stat-n .a { color: var(--accent); }
+
+  .stat-l {
+    font-size: 12.5px;
+    color: var(--text-soft);
+    margin-top: 5px;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(18px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* SECTIONS */
+  .sec {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 96px 48px;
+  }
+
+  .sec-eye {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+
+  .sec-eye::before {
+    content: '';
+    display: block;
+    width: 16px; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .sec-h {
+    font-size: clamp(34px, 4vw, 52px);
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    line-height: 1.05;
+    color: var(--text);
+  }
+
+  .sec-p {
+    font-size: 16.5px;
+    color: var(--text-mid);
+    max-width: 460px;
+    margin-top: 14px;
+    line-height: 1.7;
+  }
+
+  hr.div {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* PROBLEM */
+  .prob-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 48px;
+  }
+
+  .prob-card {
+    background: var(--surface-solid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .prob-card:hover { box-shadow: 0 6px 28px rgba(0,0,0,0.07); }
+
+  .prob-x {
+    position: absolute;
+    top: 26px; right: 26px;
+    width: 24px; height: 24px;
+    background: rgba(220,60,50,0.09);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    color: #DC3C32;
+    font-weight: 700;
+  }
+
+  .prob-card h4 {
+    font-size: 15.5px;
+    font-weight: 700;
+    margin-bottom: 9px;
+    padding-right: 36px;
+    letter-spacing: -0.2px;
+  }
+
+  .prob-card p {
+    font-size: 13.5px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* MODULES */
+  .mod-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 36px;
+    gap: 24px;
+  }
+
+  .mod-note {
+    max-width: 230px;
+    font-size: 13.5px;
+    color: var(--text-soft);
+    text-align: right;
+    line-height: 1.6;
+  }
+
+  .mod-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .mod {
+    background: var(--surface-solid);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px;
+    transition: all 0.22s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .mod::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--c);
+    opacity: 0;
+    transition: opacity 0.22s;
+  }
+
+  .mod:hover { box-shadow: 0 8px 32px rgba(0,0,0,0.08); transform: translateY(-2px); }
+  .mod:hover::before { opacity: 1; }
+
+  .mod-ico {
+    width: 42px; height: 42px;
+    border-radius: 11px;
+    background: var(--ibg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+    margin-bottom: 14px;
+  }
+
+  .mod-badge {
+    position: absolute;
+    top: 18px; right: 18px;
+    font-size: 9.5px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: var(--bbg);
+    color: var(--bc);
+    font-family: 'Instrument Sans', sans-serif;
+  }
+
+  .mod-name {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: -0.2px;
+  }
+
+  .mod-desc {
+    font-size: 12.5px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .mod-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .mi {
+    font-size: 12px;
+    color: var(--text-soft);
+    display: flex;
+    align-items: center;
+    gap: 7px;
+  }
+
+  .mi::before {
+    content: '';
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--c);
+    flex-shrink: 0;
+    opacity: 0.7;
+  }
+
+  /* HOW IT WORKS */
+  .how-bg {
+    background: var(--surface-solid);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    margin-top: 48px;
+  }
+
+  .step {
+    padding-right: 28px;
+    border-right: 1px solid var(--border);
+    margin-right: 28px;
+  }
+
+  .step:last-child { border-right: none; padding-right: 0; margin-right: 0; }
+
+  .step-n {
+    width: 46px; height: 46px;
+    border-radius: 50%;
+    background: var(--bg);
+    border: 1.5px solid var(--border-med);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 20px;
+  }
+
+  .step h4 {
+    font-size: 14.5px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.2px;
+  }
+
+  .step p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.65;
+  }
+
+  /* ROI */
+  .roi-box {
+    background: linear-gradient(135deg, #1C1A18 0%, #2A2118 100%);
+    border-radius: 24px;
+    padding: 56px;
+    margin-top: 72px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 56px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .roi-box::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(232,99,58,0.14) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .roi-box::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: 25%;
+    width: 400px; height: 300px;
+    background: radial-gradient(circle, rgba(123,110,246,0.09) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .roi-eye {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 18px;
+    font-family: 'Instrument Sans', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .roi-eye::before {
+    content: '';
+    display: block;
+    width: 16px; height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
+
+  .roi-h {
+    font-size: 40px;
+    font-weight: 800;
+    letter-spacing: -1.5px;
+    color: white;
+    line-height: 1.08;
+    margin-bottom: 18px;
+  }
+
+  .roi-warm {
+    background: linear-gradient(90deg, #E8633A, #F5B060);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .roi-sub {
+    font-size: 14.5px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.75;
+  }
+
+  .roi-nums {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .rn {
+    background: rgba(255,255,255,0.055);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 14px;
+    padding: 22px;
+  }
+
+  .rn-big {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 34px;
+    font-weight: 800;
+    letter-spacing: -1px;
+    color: white;
+    line-height: 1;
+  }
+
+  .rn-l {
+    font-size: 12px;
+    color: rgba(255,255,255,0.38);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  /* PRICING */
+  .price-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 48px;
+  }
+
+  .pc {
+    background: var(--surface-solid);
+    border: 1px solid var(--border);
+    border-radius: 22px;
+    padding: 34px;
+    position: relative;
+    transition: box-shadow 0.2s;
+  }
+
+  .pc:hover { box-shadow: 0 10px 36px rgba(0,0,0,0.08); }
+
+  .pc.feat {
+    background: #1C1A18;
+    border-color: transparent;
+    box-shadow: 0 20px 56px rgba(0,0,0,0.2);
+  }
+
+  .feat-tag {
+    position: absolute;
+    top: -1px; left: 50%;
+    transform: translateX(-50%);
+    background: linear-gradient(90deg, #E8633A, #F0925A);
+    color: white;
+    font-family: 'Instrument Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 5px 15px;
+    border-radius: 0 0 9px 9px;
+    white-space: nowrap;
+  }
+
+  .pc-tier {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-soft);
+    margin-bottom: 10px;
+    font-family: 'Instrument Sans', sans-serif;
+  }
+
+  .pc.feat .pc-tier { color: rgba(255,255,255,0.35); }
+
+  .pc-price {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-size: 44px;
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: var(--text);
+  }
+
+  .pc.feat .pc-price { color: white; }
+
+  .pc-price .sm {
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0;
+    color: var(--text-soft);
+  }
+
+  .pc.feat .pc-price .sm { color: rgba(255,255,255,0.35); }
+
+  .pc-per {
+    font-size: 13px;
+    color: var(--text-soft);
+    margin: 4px 0 20px;
+  }
+
+  .pc.feat .pc-per { color: rgba(255,255,255,0.3); }
+
+  .pc-hr {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  .pc.feat .pc-hr { border-color: rgba(255,255,255,0.07); }
+
+  .pc-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+
+  .pc.feat .pc-desc { color: rgba(255,255,255,0.4); }
+
+  .pc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .pc-list li {
+    font-size: 13px;
+    color: var(--text-mid);
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    line-height: 1.45;
+  }
+
+  .pc.feat .pc-list li { color: rgba(255,255,255,0.55); }
+
+  .pc-list li::before {
+    content: '✓';
+    color: var(--accent);
+    font-weight: 700;
+    font-size: 11.5px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .pc-list li.no { opacity: 0.3; }
+  .pc-list li.no::before { content: '–'; color: var(--text-soft); }
+
+  .pbtn {
+    width: 100%;
+    padding: 13px;
+    border-radius: 100px;
+    font-family: 'Instrument Sans', sans-serif;
+    font-weight: 600;
+    font-size: 13.5px;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .pbtn-outline {
+    background: none;
+    border: 1.5px solid var(--border-med);
+    color: var(--text);
+  }
+
+  .pbtn-outline:hover {
+    border-color: var(--text);
+  }
+
+  .pbtn-grad {
+    background: linear-gradient(135deg, #E8633A 0%, #F0925A 100%);
+    border: none;
+    color: white;
+    box-shadow: 0 4px 16px rgba(232,99,58,0.35);
+  }
+
+  .pbtn-grad:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(232,99,58,0.45);
+  }
+
+  /* CTA */
+  .cta-wrap {
+    background: var(--surface-solid);
+    border-top: 1px solid var(--border);
+  }
+
+  .cta-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 96px 48px;
+    text-align: center;
+  }
+
+  .cta-inner h2 {
+    font-size: clamp(38px, 5vw, 64px);
+    font-weight: 800;
+    letter-spacing: -2px;
+    line-height: 1.05;
+    max-width: 620px;
+    margin: 0 auto 20px;
+  }
+
+  .cta-inner p {
+    font-size: 16.5px;
+    color: var(--text-mid);
+    max-width: 420px;
+    margin: 0 auto 38px;
+    line-height: 1.7;
+  }
+
+  .cta-row {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .fn {
+    font-size: 12px;
+    color: var(--text-soft);
+    margin-top: 20px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 26px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer p { font-size: 12px; color: var(--text-soft); }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 20px; }
+    .hero, .sec, .cta-inner { padding-left: 20px; padding-right: 20px; }
+    .hero h1 { font-size: 44px; letter-spacing: -1.5px; }
+    .mod-grid, .price-grid, .prob-grid { grid-template-columns: 1fr; }
+    .steps { grid-template-columns: 1fr 1fr; gap: 28px; }
+    .step { border-right: none; padding-right: 0; margin-right: 0; }
+    .stats-row { flex-direction: column; }
+    .stat { border-right: none; border-bottom: 1px solid var(--border); }
+    .stat:last-child { border-bottom: none; }
+    .roi-box { grid-template-columns: 1fr; padding: 32px 24px; }
+    .mod-header { flex-direction: column; align-items: flex-start; }
+    .mod-note { text-align: left; max-width: 100%; }
+    footer { flex-direction: column; gap: 10px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<div class="mesh"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-mark">🦞</div>
+    Claw<span class="logo-dot">Flow</span>
+  </a>
+  <span class="nav-pill">Preliminary · 2026</span>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow-pill">
+    <div class="live-dot"></div>
+    Powered by OpenClaw + NemoClaw
+  </div>
+  <h1>Automate <span class="gradient-text">50%</span><br>of your business<br><span class="text-soft">in 30 days.</span></h1>
+  <p class="hero-sub">ClawFlow installs and configures OpenClaw for your business — so your team spends time on growth, not admin.</p>
+  <div class="hero-cta">
+    <a href="#modules" class="btn-dark">See What We Automate</a>
+    <button class="btn-text">View Pricing →</button>
+  </div>
+  <div class="stats-row">
+    <div class="stat">
+      <div class="stat-n">50<span class="a">%</span></div>
+      <div class="stat-l">Workflows automated</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">30<span class="a">d</span></div>
+      <div class="stat-l">To full deployment</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">9</div>
+      <div class="stat-l">Business functions covered</div>
+    </div>
+    <div class="stat">
+      <div class="stat-n">$50<span style="font-size:17px;font-weight:500;color:#aaa;">/mo</span></div>
+      <div class="stat-l">Avg. AI running costs</div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- PROBLEM -->
+<div class="sec">
+  <div class="sec-eye">The Problem</div>
+  <h2 class="sec-h">Your team is drowning<br><span class="text-soft">in busywork.</span></h2>
+  <p class="sec-p">The average SMB employee spends 60% of their day on repetitive digital tasks. That's your growth budget going nowhere.</p>
+  <div class="prob-grid">
+    <div class="prob-card">
+      <div class="prob-x">✕</div>
+      <h4>Inbox overload</h4>
+      <p>Hours lost reading, sorting, and responding to emails that follow the same patterns every single week.</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-x">✕</div>
+      <h4>Leads falling through cracks</h4>
+      <p>Follow-ups missed, deals stalled, pipelines unmaintained — not because no one cares, but because there's no time.</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-x">✕</div>
+      <h4>Reporting done manually</h4>
+      <p>Someone spends Friday afternoon building the same spreadsheet they built last Friday. And the Friday before that.</p>
+    </div>
+    <div class="prob-card">
+      <div class="prob-x">✕</div>
+      <h4>Inconsistent onboarding</h4>
+      <p>Every new client or employee gets a different experience depending on who happens to be handling it that week.</p>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- MODULES -->
+<div class="sec" id="modules">
+  <div class="mod-header">
+    <div>
+      <div class="sec-eye">The Solution</div>
+      <h2 class="sec-h">9 modules.<br><span class="text-soft">One agent.</span></h2>
+    </div>
+    <p class="mod-note">Pick the modules that matter most. Stack them over time. Each one runs 24/7 without supervision.</p>
+  </div>
+
+  <div class="mod-grid">
+
+    <div class="mod" style="--c:#E8633A; --ibg:rgba(232,99,58,0.1); --bbg:rgba(232,99,58,0.1); --bc:#E8633A;">
+      <span class="mod-badge">High ROI</span>
+      <div class="mod-ico">📬</div>
+      <div class="mod-name">Communications</div>
+      <div class="mod-desc">AI handles your inbox, WhatsApp, and Slack — triage, draft, route, and follow up automatically.</div>
+      <div class="mod-items">
+        <span class="mi">Email triage & priority sorting</span>
+        <span class="mi">Auto-draft responses</span>
+        <span class="mi">WhatsApp business replies</span>
+        <span class="mi">Slack message routing</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#7B6EF6; --ibg:rgba(123,110,246,0.1); --bbg:rgba(123,110,246,0.1); --bc:#7B6EF6;">
+      <span class="mod-badge">Popular</span>
+      <div class="mod-ico">📣</div>
+      <div class="mod-name">Sales & CRM</div>
+      <div class="mod-desc">Leads captured, scored, followed up, and pipeline updated — without your team lifting a finger.</div>
+      <div class="mod-items">
+        <span class="mi">Lead capture & scoring</span>
+        <span class="mi">Follow-up sequences</span>
+        <span class="mi">Pipeline status updates</span>
+        <span class="mi">Proposal sending</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#F0A030; --ibg:rgba(240,160,48,0.1);">
+      <div class="mod-ico">🛒</div>
+      <div class="mod-name">Marketing</div>
+      <div class="mod-desc">Schedule, repurpose, monitor, and report across all your marketing channels on autopilot.</div>
+      <div class="mod-items">
+        <span class="mi">Social content scheduling</span>
+        <span class="mi">Content repurposing</span>
+        <span class="mi">Brand mention monitoring</span>
+        <span class="mi">Campaign performance digests</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#22C98A; --ibg:rgba(34,201,138,0.1);">
+      <div class="mod-ico">🧾</div>
+      <div class="mod-name">Finance & Admin</div>
+      <div class="mod-desc">Invoice chasing, expense categorisation, receipt processing and financial summaries automated.</div>
+      <div class="mod-items">
+        <span class="mi">Invoice generation & chasing</span>
+        <span class="mi">Expense categorisation</span>
+        <span class="mi">Receipt processing</span>
+        <span class="mi">Weekly financial summaries</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#9B6EE8; --ibg:rgba(155,110,232,0.1);">
+      <div class="mod-ico">🧑‍🤝‍🧑</div>
+      <div class="mod-name">HR & People Ops</div>
+      <div class="mod-desc">From job posting to onboarding checklists — consistent people processes at any scale.</div>
+      <div class="mod-items">
+        <span class="mi">Job post distribution</span>
+        <span class="mi">Applicant screening</span>
+        <span class="mi">Onboarding workflows</span>
+        <span class="mi">Leave & performance tracking</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#E85E8A; --ibg:rgba(232,94,138,0.1);">
+      <div class="mod-ico">🎯</div>
+      <div class="mod-name">Project Management</div>
+      <div class="mod-desc">Kickoffs, status reports, deadline nudges, and client updates generated and sent automatically.</div>
+      <div class="mod-items">
+        <span class="mi">Project kickoff workflows</span>
+        <span class="mi">Deadline nudges</span>
+        <span class="mi">Status report generation</span>
+        <span class="mi">Client update emails</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#3AB5E8; --ibg:rgba(58,181,232,0.1); --bbg:rgba(58,181,232,0.1); --bc:#3AB5E8;">
+      <span class="mod-badge">Popular</span>
+      <div class="mod-ico">🛎️</div>
+      <div class="mod-name">Customer Success</div>
+      <div class="mod-desc">Tickets triaged, FAQs answered, churn spotted early, and renewals reminded — automatically.</div>
+      <div class="mod-items">
+        <span class="mi">Support ticket triage</span>
+        <span class="mi">FAQ auto-responses</span>
+        <span class="mi">Churn risk alerts</span>
+        <span class="mi">Renewal reminders</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#F07830; --ibg:rgba(240,120,48,0.1);">
+      <div class="mod-ico">📊</div>
+      <div class="mod-name">Reporting & Intelligence</div>
+      <div class="mod-desc">Daily briefings, KPI summaries, competitor monitoring — auto-generated and delivered to you.</div>
+      <div class="mod-items">
+        <span class="mi">Daily business briefings</span>
+        <span class="mi">KPI dashboard generation</span>
+        <span class="mi">Competitor monitoring</span>
+        <span class="mi">Weekly performance digests</span>
+      </div>
+    </div>
+
+    <div class="mod" style="--c:#9CA3AF; --ibg:rgba(156,163,175,0.1);">
+      <div class="mod-ico">⚙️</div>
+      <div class="mod-name">IT & Operations</div>
+      <div class="mod-desc">File organisation, licence tracking, backup monitoring, and security alerts handled quietly.</div>
+      <div class="mod-items">
+        <span class="mi">File organisation</span>
+        <span class="mi">Software licence tracking</span>
+        <span class="mi">Backup monitoring</span>
+        <span class="mi">Security & uptime alerts</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how-bg">
+  <div class="sec">
+    <div class="sec-eye">How It Works</div>
+    <h2 class="sec-h">Up and running<br><span class="text-soft">in 4 steps.</span></h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-n">1</div>
+        <h4>Workflow Audit</h4>
+        <p>We map your current digital workflows and identify the highest-value automation opportunities across all 9 functions.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">2</div>
+        <h4>Module Selection</h4>
+        <p>Together we choose which modules to activate first, prioritised by ROI and your team's biggest pain points.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">3</div>
+        <h4>Secure Deployment</h4>
+        <p>We install and configure OpenClaw with NemoClaw's security guardrails on your own infrastructure. Your data stays yours.</p>
+      </div>
+      <div class="step">
+        <div class="step-n">4</div>
+        <h4>Monitor & Expand</h4>
+        <p>We monitor performance, fine-tune your automations, and progressively stack more modules as confidence grows.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROI -->
+<div class="sec">
+  <div class="roi-box">
+    <div>
+      <div class="roi-eye">The Numbers</div>
+      <h2 class="roi-h">Real ROI.<br><span class="roi-warm">Not theory.</span></h2>
+      <p class="roi-sub">Businesses running OpenClaw automations report saving 8–15 hours per week per function. At a typical SMB loaded labour cost, that's meaningful money back every month — often within 6 months of setup.</p>
+    </div>
+    <div class="roi-nums">
+      <div class="rn">
+        <div class="rn-big">50%</div>
+        <div class="rn-l">Digital workflows automated on average</div>
+      </div>
+      <div class="rn">
+        <div class="rn-big">8–15h</div>
+        <div class="rn-l">Saved per week per module</div>
+      </div>
+      <div class="rn">
+        <div class="rn-big">$50</div>
+        <div class="rn-l">Avg. monthly AI API running cost</div>
+      </div>
+      <div class="rn">
+        <div class="rn-big">&lt;6mo</div>
+        <div class="rn-l">Typical payback period</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- PRICING -->
+<div class="sec">
+  <div class="sec-eye">Pricing</div>
+  <h2 class="sec-h">Simple, modular<br><span class="text-soft">pricing.</span></h2>
+  <p class="sec-p">Start with what hurts most. Add more modules as you grow. No lock-in, no surprises.</p>
+
+  <div class="price-grid">
+
+    <div class="pc">
+      <div class="pc-tier">Starter</div>
+      <div class="pc-price">$1,500<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $500 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">Perfect for small businesses wanting to automate 1–2 core functions and see results fast.</p>
+      <ul class="pc-list">
+        <li>Up to 2 modules activated</li>
+        <li>Workflow audit included</li>
+        <li>NemoClaw secure deployment</li>
+        <li>30-day onboarding support</li>
+        <li>Monthly performance review</li>
+        <li class="no">Custom integrations</li>
+        <li class="no">Dedicated account manager</li>
+      </ul>
+      <button class="pbtn pbtn-outline">Get Started</button>
+    </div>
+
+    <div class="pc feat">
+      <div class="feat-tag">Most Popular</div>
+      <div class="pc-tier">Growth</div>
+      <div class="pc-price">$4,500<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $1,500 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">For growing businesses ready to automate across 4–5 functions and hit that 50% target.</p>
+      <ul class="pc-list">
+        <li>Up to 5 modules activated</li>
+        <li>Full workflow audit & roadmap</li>
+        <li>NemoClaw secure deployment</li>
+        <li>60-day onboarding support</li>
+        <li>Bi-weekly performance reviews</li>
+        <li>Custom integrations (up to 3)</li>
+        <li class="no">Dedicated account manager</li>
+      </ul>
+      <button class="pbtn pbtn-grad">Get Started</button>
+    </div>
+
+    <div class="pc">
+      <div class="pc-tier">Scale</div>
+      <div class="pc-price">$10k<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $3,000 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">For mid-market businesses automating all 9 functions with full support and a dedicated team.</p>
+      <ul class="pc-list">
+        <li>All 9 modules activated</li>
+        <li>Full workflow audit & roadmap</li>
+        <li>NemoClaw enterprise deployment</li>
+        <li>90-day white-glove onboarding</li>
+        <li>Weekly performance reviews</li>
+        <li>Unlimited custom integrations</li>
+        <li>Dedicated account manager</li>
+      </ul>
+      <button class="pbtn pbtn-outline">Contact Sales</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-wrap">
+  <div class="cta-inner">
+    <div class="sec-eye" style="justify-content:center; margin-bottom:18px;">Limited Early Access</div>
+    <h2>Your business runs 24/7.<br><span class="gradient-text">Shouldn't your<br>workflows too?</span></h2>
+    <p>Join the waitlist for early access pricing and a free workflow audit worth $500.</p>
+    <div class="cta-row">
+      <a href="#" class="btn-dark">Join the Waitlist</a>
+      <button class="btn-text">Book a Demo →</button>
+    </div>
+    <p class="fn">No commitment required · Free workflow audit included · Up and running in 30 days</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <a href="#" class="logo" style="font-size:16px;">
+    <div class="logo-mark" style="width:26px;height:26px;font-size:13px;">🦞</div>
+    Claw<span class="logo-dot">Flow</span>
+  </a>
+  <p>Preliminary deck — not for distribution · Kenneth, Leadly 2026</p>
+  <p>DRAFT v0.2</p>
+</footer>
+
+</body>
+</html>
