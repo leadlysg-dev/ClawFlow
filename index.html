@@ -336,41 +336,69 @@ footer p{font-size:12px;color:var(--text-soft);}
   .nav-links{display:none;}
   .hamburger{display:flex;}
   .hero{padding:100px 20px 60px;}
-  .sec{padding:64px 20px;}
-  .waitlist-inner{padding:64px 20px;}
-  .hero h1{font-size:38px;}
+  .sec{padding:56px 20px;}
+  .waitlist-inner{padding:56px 20px;}
+  .hero h1{font-size:36px;}
   .hero-sub{font-size:15px;}
-  .stats-inner{flex-direction:grid;display:grid;grid-template-columns:1fr 1fr;}
-  .stat{border-right:none;border-bottom:1px solid var(--border);padding:24px 20px;}
+  .stats-inner{display:grid;grid-template-columns:1fr 1fr;}
+  .stat{border-right:none;border-bottom:1px solid var(--border);padding:20px 16px;}
   .stat:nth-child(odd){border-right:1px solid var(--border);}
   .stat:nth-last-child(-n+2){border-bottom:none;}
-  .prob-grid,.ind-panel{grid-template-columns:1fr;}
+  .prob-grid{grid-template-columns:1fr;}
+  .prob-stat{font-size:36px;}
+  .ind-panel{grid-template-columns:1fr;}
+  .ind-tabs{flex-wrap:wrap;gap:6px;}
+  .ind-tab{font-size:12px;padding:7px 12px;}
   .mod-grid{grid-template-columns:1fr 1fr;}
+  .calc-mini-grid{grid-template-columns:1fr 1fr;}
   .steps{grid-template-columns:1fr 1fr;gap:24px;}
   .step{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:20px;}
   .step:nth-last-child(-n+2){border-bottom:none;}
   .roi-box{grid-template-columns:1fr;padding:30px 22px;gap:28px;}
   .roi-nums{grid-template-columns:1fr 1fr;}
   .test-grid{grid-template-columns:1fr;}
-  .price-grid{grid-template-columns:1fr;}
+  .price-grid{grid-template-columns:1fr;max-width:440px;margin-left:auto;margin-right:auto;}
   .calc-results{grid-template-columns:1fr 1fr;}
   .mod-header{flex-direction:column;align-items:flex-start;}
   .mod-note{text-align:left;max-width:100%;}
+  .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;}
   footer{flex-direction:column;text-align:center;padding:20px;}
 }
 @media(max-width:580px){
-  .hero h1{font-size:32px;}
-  .hero-cta{flex-direction:column;align-items:center;}
+  .hero h1{font-size:28px;letter-spacing:-.5px;}
+  .hero-sub{font-size:14px;}
+  .hero-cta{flex-direction:column;align-items:stretch;}
   .btn-primary,.btn-secondary{width:100%;justify-content:center;}
+  .sec{padding:48px 18px;}
+  .sec-h{font-size:26px;}
+  .stats-inner{grid-template-columns:1fr 1fr;}
+  .stat-n{font-size:30px;}
+  .prob-grid{gap:1px;}
+  .prob-card{padding:22px 18px;}
+  .prob-stat{font-size:32px;}
   .mod-grid{grid-template-columns:1fr;}
+  .calc-mini-grid{grid-template-columns:1fr 1fr 1fr;}
+  .calc-mini-btn{font-size:11px;padding:8px 7px;gap:5px;}
   .steps{grid-template-columns:1fr;}
   .step{border-bottom:1px solid var(--border);padding-bottom:18px;}
   .step:last-child{border-bottom:none;}
   .roi-nums{grid-template-columns:1fr 1fr;}
+  .rn-big{font-size:32px;}
+  .price-grid{max-width:100%;}
+  .pc{padding:22px 18px;}
   .waitlist-form{flex-direction:column;}
   .waitlist-input,.waitlist-btn{width:100%;}
-  .tool-row{gap:8px;}
-  .tool-icon{width:52px;height:52px;font-size:20px;}
+  .tool-row{gap:6px;}
+  .tool-icon{width:46px;height:46px;font-size:19px;border-radius:10px;}
+  .diagram-wrap{margin-top:48px;}
+  .message-card{padding:16px 18px;}
+  .mc-body{font-size:13px;}
+  .ind-tabs{gap:5px;}
+  .ind-tab{font-size:11.5px;padding:6px 10px;}
+  .faq-q{font-size:14px;padding:16px 0;}
+  .tier-hint{font-size:12px;}
+  .hero-eyebrow{font-size:11px;padding:6px 12px;}
+  .comp-table th,.comp-table td{font-size:12px;padding:10px 8px;}
 }
 </style>
 </head>
@@ -405,7 +433,7 @@ footer p{font-size:12px;color:var(--text-soft);}
 
 <!-- HERO -->
 <div class="hero">
-  <div class="hero-eyebrow"><div class="live-dot"></div>Powered by OpenClaw + NemoClaw · Singapore & Australia</div>
+  <div class="hero-eyebrow"><div class="live-dot"></div>Powered by OpenClaw + NemoClaw</div>
   <h1>The AI agent that<br><em>runs your business.</em></h1>
   <p class="hero-sub">Actuate AI deploys an autonomous agent across your entire operation — so your team focuses on growth, not admin.</p>
   <div class="hero-cta">
@@ -417,12 +445,12 @@ footer p{font-size:12px;color:var(--text-soft);}
   <div class="diagram-wrap">
     <!-- Tool icons row — order matches SCENARIOS array indices 0-5 -->
     <div class="tool-row" id="toolRow">
-      <div class="tool-icon" id="ti0">💬</div>
-      <div class="tool-icon" id="ti1">📬</div>
-      <div class="tool-icon" id="ti2">📅</div>
-      <div class="tool-icon" id="ti3">🏠</div>
-      <div class="tool-icon" id="ti4">📣</div>
-      <div class="tool-icon" id="ti5">🧾</div>
+      <div class="tool-icon" id="ti0">🧾</div>
+      <div class="tool-icon" id="ti1">🧑‍💼</div>
+      <div class="tool-icon" id="ti2">📊</div>
+      <div class="tool-icon" id="ti3">📅</div>
+      <div class="tool-icon" id="ti4">⚙️</div>
+      <div class="tool-icon" id="ti5">📬</div>
     </div>
 
     <!-- SVG connector tree with animated pulse -->
@@ -445,15 +473,15 @@ footer p{font-size:12px;color:var(--text-soft);}
     <div style="display:flex;flex-direction:column;align-items:center;margin-top:-8px;">
       <div class="message-card" id="messageCard">
         <div class="mc-header">
-          <span class="mc-source-icon" id="mcIcon">💬</span>
-          <span class="mc-app" id="mcApp">WhatsApp</span>
+          <span class="mc-source-icon" id="mcIcon">🧾</span>
+          <span class="mc-app" id="mcApp">Xero</span>
           <div class="mc-dot"></div>
-          <span class="mc-channel" id="mcChannel">New lead inquiry</span>
+          <span class="mc-channel" id="mcChannel">Overdue invoice</span>
         </div>
-        <div class="mc-body" id="mcBody">"Hi, I saw your listing on PropertyGuru — is 32 Clementi Ave still available?"</div>
+        <div class="mc-body" id="mcBody">Invoice #1042 to Meridian Group — $4,200 — 14 days overdue. No response to 2 emails.</div>
         <div class="mc-author">
           <div class="mc-avatar">A</div>
-          <span class="mc-response" id="mcResponse">Actuate AI <strong>responded instantly</strong> →</span>
+          <span class="mc-response" id="mcResponse"><strong>Actuate AI</strong> · Escalation sequence triggered, legal notice drafted</span>
         </div>
       </div>
       <div style="width:2px;height:22px;background:var(--accent);margin:0 auto;"></div>
@@ -520,7 +548,7 @@ footer p{font-size:12px;color:var(--text-soft);}
   <div class="sec reveal">
     <div class="sec-eye">Industries</div>
     <h2 class="sec-h">Built for your <em>industry.</em></h2>
-    <p class="sec-p">Pre-built playbooks for Singapore and Australian SMBs — going far beyond reminders and scheduling.</p>
+    <p class="sec-p">Pre-built playbooks for SMBs — going far beyond reminders and scheduling.</p>
     <div class="ind-tabs">
       <button class="ind-tab active" onclick="showIndustry('medical',this)">🏥 Medical & Health</button>
       <button class="ind-tab" onclick="showIndustry('fitness',this)">💪 Fitness & Wellness</button>
@@ -726,9 +754,9 @@ footer p{font-size:12px;color:var(--text-soft);}
   <div class="sec-eye">Social Proof</div>
   <h2 class="sec-h">Early adopters <em>are seeing results.</em></h2>
   <div class="test-grid">
-    <div class="test-card reveal reveal-1"><span class="test-industry">🏥 Medical · SG</span><div class="test-stars">★★★★★</div><div class="test-quote">We were spending 3 hours a day on appointment reminders and follow-ups. Actuate AI automated all of it in the first week. Our front desk now handles twice the patients.</div><div class="test-author"><div class="test-avatar">👩‍⚕️</div><div><div class="test-name">Dr. Sarah Lim</div><div class="test-role">Clinic Director · Singapore</div></div></div></div>
-    <div class="test-card reveal reveal-2"><span class="test-industry">🏠 Property · SG</span><div class="test-stars">★★★★★</div><div class="test-quote">As a fixed-fee agency, we can't waste time on admin. Actuate AI handles all our lead follow-ups and listing updates. I've personally reclaimed 15 hours a week.</div><div class="test-author"><div class="test-avatar">🏡</div><div><div class="test-name">Marcus Chen</div><div class="test-role">Principal Agent · Singapore</div></div></div></div>
-    <div class="test-card reveal reveal-3"><span class="test-industry">💪 Fitness · AU</span><div class="test-stars">★★★★★</div><div class="test-quote">Member retention went up 22% in two months. The automated re-engagement messages catch people before they cancel. It's like having a retention manager working 24/7.</div><div class="test-author"><div class="test-avatar">🏋️</div><div><div class="test-name">Jake Morrison</div><div class="test-role">Studio Owner · Melbourne</div></div></div></div>
+    <div class="test-card reveal reveal-1"><span class="test-industry">🏥 Medical</span><div class="test-stars">★★★★★</div><div class="test-quote">We were spending 3 hours a day on appointment reminders and follow-ups. Actuate AI automated all of it in the first week. Our front desk now handles twice the patients.</div><div class="test-author"><div class="test-avatar">👩‍⚕️</div><div><div class="test-name">Dr. Sarah Lim</div><div class="test-role">Clinic Director</div></div></div></div>
+    <div class="test-card reveal reveal-2"><span class="test-industry">🏠 Property</span><div class="test-stars">★★★★★</div><div class="test-quote">As a fixed-fee agency, we can't waste time on admin. Actuate AI handles all our lead follow-ups and listing updates. I've personally reclaimed 15 hours a week.</div><div class="test-author"><div class="test-avatar">🏡</div><div><div class="test-name">Marcus Chen</div><div class="test-role">Principal Agent</div></div></div></div>
+    <div class="test-card reveal reveal-3"><span class="test-industry">💪 Fitness</span><div class="test-stars">★★★★★</div><div class="test-quote">Member retention went up 22% in two months. The automated re-engagement messages catch people before they cancel. It's like having a retention manager working 24/7.</div><div class="test-author"><div class="test-avatar">🏋️</div><div><div class="test-name">Jake Morrison</div><div class="test-role">Studio Owner</div></div></div></div>
   </div>
 </div>
 
@@ -746,7 +774,7 @@ footer p{font-size:12px;color:var(--text-soft);}
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Where does my data live? Who can see it?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Your data lives on your own infrastructure — your server, your cloud account. Actuate AI never has access to your business data. NemoClaw's OpenShell runtime enforces strict sandboxing so the agent can only access what you explicitly permit.</div></div></div>
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does setup actually take?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">The first module is typically live within 5–7 business days of your kickoff call. Full deployment takes 2–4 weeks depending on the complexity of your existing tools. We run parallel testing before anything goes live so there's no disruption to your operations.</div></div></div>
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if the AI makes a mistake?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Every high-stakes action — sending emails, posting publicly, financial transactions — has a human approval gate by default. You can set the autonomy level for each workflow, from fully supervised to fully autonomous. We recommend starting supervised and expanding as confidence grows.</div></div></div>
-    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you work with businesses in both Singapore and Australia?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes — we're currently focused on Singapore and Australia, with local knowledge of both markets. We understand the tools common to each (PropertyGuru vs Domain, GHL, WhatsApp Business API) and build integrations accordingly.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What markets do you operate in?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">We're currently focused on Singapore, with deep local knowledge of the tools and platforms common here — including PropertyGuru, GHL, WhatsApp Business API, and more. We integrate with virtually any tool that has an API.</div></div></div>
     <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What tools does Actuate AI integrate with?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">We integrate with virtually any tool that has an API — GoHighLevel, HubSpot, Salesforce, Gmail, Outlook, WhatsApp Business API, Slack, Notion, Google Workspace, Xero, QuickBooks, and more.</div></div></div>
   </div>
 </div>
@@ -756,7 +784,7 @@ footer p{font-size:12px;color:var(--text-soft);}
 <!-- WAITLIST -->
 <div class="waitlist-wrap" id="waitlist">
   <div class="waitlist-inner reveal">
-    <div class="market-badges"><span class="market-badge">🇸🇬 Singapore</span><span class="market-badge">🇦🇺 Australia</span></div>
+    <div class="market-badges"></div>
     <div class="sec-eye" style="justify-content:center;margin-bottom:14px;">Limited Early Access</div>
     <h2>Your business runs 24/7.<br>Shouldn't your <em>workflows too?</em></h2>
     <p>Join the waitlist for early access pricing and a free workflow audit worth $500.</p>
@@ -771,7 +799,7 @@ footer p{font-size:12px;color:var(--text-soft);}
 
 <footer>
   <a href="#" class="logo" style="font-size:16px;">Actuate <span class="logo-ai">AI</span></a>
-  <p>© 2026 Actuate AI · Powered by OpenClaw + NemoClaw · Singapore & Australia</p>
+  <p>© 2026 Actuate AI · Powered by OpenClaw + NemoClaw</p>
   <p>DRAFT v0.5 · Kenneth, Leadly</p>
 </footer>
 
@@ -993,34 +1021,34 @@ function submitWaitlist(){
 // ── DIAGRAM ANIMATION ──
 var SCENARIOS = [
   {
-    icon:'💬', app:'WhatsApp', channel:'New lead inquiry', color:'#25D366', glow:'rgba(37,211,102,.18)',
-    body:'"Hi, I saw your listing on PropertyGuru — is 32 Clementi Ave still available?"',
-    response:'Responded with availability, price & viewing slots'
+    icon:'🧾', app:'Xero', channel:'Overdue invoice', color:'#00B4D8', glow:'rgba(0,180,216,.15)',
+    body:'Invoice #1042 to Meridian Group — $4,200 — 14 days overdue. No response to 2 emails.',
+    response:'Escalation sequence triggered, legal notice drafted'
   },
   {
-    icon:'📬', app:'Gmail', channel:'Support inbox', color:'#EA4335', glow:'rgba(234,67,53,.15)',
-    body:'"I haven\'t received my invoice from last month — can someone look into this?"',
-    response:'Invoice re-sent & support ticket logged automatically'
+    icon:'🧑‍💼', app:'HR System', channel:'New hire — Day 1', color:'#7C6EF5', glow:'rgba(124,110,245,.15)',
+    body:'Jamie Torres starts today. Onboarding checklist not sent. IT access not provisioned.',
+    response:'Welcome sequence sent, IT tickets raised, manager briefed'
+  },
+  {
+    icon:'📊', app:'Analytics', channel:'Weekly performance', color:'#0F9D58', glow:'rgba(15,157,88,.15)',
+    body:'Monday 8am. No weekly report sent to leadership. 6 KPIs below target vs last week.',
+    response:'Report generated, anomalies flagged, summary emailed'
   },
   {
     icon:'📅', app:'Calendar', channel:'Meeting just ended', color:'#4285F4', glow:'rgba(66,133,244,.15)',
-    body:'Discovery call with Sarah Chen (Apex Dental) ended 4 mins ago. No follow-up sent.',
-    response:'Summary emailed, proposal draft queued for review'
+    body:'Board meeting ended 3 mins ago. No minutes, no action items, no follow-ups assigned.',
+    response:'Transcript summarised, action items sent to owners'
   },
   {
-    icon:'🏠', app:'PropertyGuru', channel:'New enquiry', color:'#E84B3A', glow:'rgba(232,75,58,.15)',
-    body:'"Interested in Block 88 Bishan — what\'s the asking price and is it still available?"',
-    response:'Matched buyer profile, sent property details instantly'
+    icon:'⚙️', app:'Infrastructure', channel:'System alert', color:'#FF6B35', glow:'rgba(255,107,53,.15)',
+    body:'SSL certificate for client portal expires in 3 days. No renewal initiated.',
+    response:'Renewal triggered, IT notified, stakeholders alerted'
   },
   {
-    icon:'📣', app:'Instagram', channel:'New DM', color:'#E1306C', glow:'rgba(225,48,108,.15)',
-    body:'"Hey, do you guys still have the Monday 7pm class available? How do I sign up?"',
-    response:'Booking link sent, class spot confirmed instantly'
-  },
-  {
-    icon:'🧾', app:'Xero', channel:'Overdue invoice', color:'#00B4D8', glow:'rgba(0,180,216,.15)',
-    body:'Invoice #1042 to Meridian Group — $4,200 — 14 days overdue with no response.',
-    response:'Payment reminder sent, escalation scheduled'
+    icon:'📬', app:'Support Inbox', channel:'Ticket #2847', color:'#EA4335', glow:'rgba(234,67,53,.15)',
+    body:'"This is the third time I\'ve asked — my account is still locked and I have a deadline."',
+    response:'Escalated to senior support, apology sent, issue resolved'
   }
 ];
 
