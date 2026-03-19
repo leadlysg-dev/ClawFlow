@@ -114,11 +114,13 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:68px;d
 hr.div{border:none;border-top:1px solid var(--border);max-width:1000px;margin:0 auto;}
 
 /* PROBLEM */
-.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:48px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
-.prob-card{background:var(--white);padding:32px;position:relative;}
-.prob-x{position:absolute;top:24px;right:24px;width:22px;height:22px;border-radius:50%;background:rgba(220,60,50,.08);display:flex;align-items:center;justify-content:center;font-size:10px;color:#DC3C32;font-weight:700;}
-.prob-card h4{font-family:'Playfair Display',serif;font-size:17px;font-weight:500;margin-bottom:9px;padding-right:30px;letter-spacing:-.1px;}
-.prob-card p{font-size:13.5px;color:var(--text-mid);line-height:1.7;font-weight:300;}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;margin-top:40px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.prob-card{background:var(--white);padding:28px;position:relative;display:flex;flex-direction:column;gap:10px;}
+.prob-stat{font-family:'Playfair Display',serif;font-size:44px;font-weight:500;letter-spacing:-2px;line-height:1;color:var(--text);}
+.prob-stat em{font-style:normal;font-size:20px;letter-spacing:0;color:var(--text-soft);margin-left:2px;}
+.prob-x{position:absolute;top:20px;right:20px;width:18px;height:18px;border-radius:50%;background:rgba(220,60,50,.07);display:flex;align-items:center;justify-content:center;font-size:9px;color:#DC3C32;font-weight:700;}
+.prob-card h4{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35;margin:0;padding-right:24px;}
+.prob-card p{font-size:13px;color:var(--text-mid);line-height:1.65;font-weight:300;margin:0;}
 
 /* INDUSTRIES */
 .ind-bg{background:var(--white);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
@@ -262,8 +264,13 @@ hr.div{border:none;border-top:1px solid var(--border);max-width:1000px;margin:0 
 
 /* PRICING */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px;}
-.pc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:30px;position:relative;}
+.pc{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:30px;position:relative;transition:transform .5s cubic-bezier(.34,1.56,.64,1),box-shadow .5s ease,border-color .4s ease,opacity .4s ease;}
 .pc.feat{background:var(--text);border-color:var(--text);}
+.pc.tier-dimmed{opacity:.35;transform:scale(0.97);}
+.pc.tier-active{border-color:var(--accent) !important;box-shadow:0 0 0 3px rgba(42,92,230,.15),0 8px 32px rgba(42,92,230,.12);transform:translateY(-6px) scale(1.02);opacity:1 !important;}
+.pc.tier-active.feat{border-color:var(--accent) !important;}
+.tier-hint{text-align:center;font-size:12.5px;color:var(--accent);font-weight:500;margin-top:16px;min-height:20px;transition:opacity .3s;opacity:0;}
+.tier-hint.visible{opacity:1;}
 .feat-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--accent);color:#fff;font-size:9.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:4px 14px;border-radius:0 0 8px 8px;white-space:nowrap;}
 .pc-tier{font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;}
 .pc.feat .pc-tier{color:rgba(255,255,255,.4);}
@@ -472,15 +479,39 @@ footer p{font-size:12px;color:var(--text-soft);}
 <!-- PROBLEM -->
 <div class="sec reveal">
   <div class="sec-eye">The Problem</div>
-  <h2 class="sec-h">Your business is losing ground<br><em>to manual operations.</em></h2>
-  <p class="sec-p">Every process that depends on a human doing it correctly, every time, is a liability. Here's what that actually costs.</p>
+  <h2 class="sec-h">Manual operations are<br><em>costing you more than you think.</em></h2>
+  <p class="sec-p">Every process that relies on a human doing it right, every time, is a liability.</p>
   <div class="prob-grid">
-    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>Your best people are doing work a computer should</h4><p>45% of work activities are automatable today. Yet most SMBs have skilled, expensive staff chasing invoices, sorting emails, and updating spreadsheets — every single week.</p></div>
-    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Revenue is quietly walking out the door</h4><p>Missed follow-ups, slow responses, and unpredicted churn cost the average SMB 3–5% of annual revenue. At $1M turnover, that's up to $50k gone — with no bad decision ever made.</p></div>
-    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>You are the single point of failure</h4><p>When critical knowledge lives in one person's head — how to handle a complaint, when to chase a client — your business can't scale, can't take holidays, and can't survive key-person risk.</p></div>
-    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Your competitors are already automating</h4><p>68% of SMBs that deployed AI automation report significant productivity gains. The businesses that move now aren't just saving time — they're building a cost advantage that becomes impossible to close.</p></div>
-  </div>
-</div>
+
+    <div class="prob-card reveal reveal-1">
+      <div class="prob-x">✕</div>
+      <div class="prob-stat">45<em>%</em></div>
+      <h4>Your best people are doing work a computer should</h4>
+      <p>Nearly half of daily work is fully automatable today — yet skilled, expensive staff are still chasing invoices and sorting emails every single week.</p>
+    </div>
+
+    <div class="prob-card reveal reveal-2">
+      <div class="prob-x">✕</div>
+      <div class="prob-stat">$50<em>k</em></div>
+      <h4>Revenue is quietly walking out the door</h4>
+      <p>Missed follow-ups and slow responses cost the average $1M SMB up to $50k a year — with no bad decision ever made.</p>
+    </div>
+
+    <div class="prob-card reveal reveal-1">
+      <div class="prob-x">✕</div>
+      <div class="prob-stat">1<em> person</em></div>
+      <h4>You are the single point of failure</h4>
+      <p>When critical knowledge lives in one person's head, your business can't scale, can't take a holiday, and can't survive key-person risk.</p>
+    </div>
+
+    <div class="prob-card reveal reveal-2">
+      <div class="prob-x">✕</div>
+      <div class="prob-stat">68<em>%</em></div>
+      <h4>Your competitors are already automating</h4>
+      <p>68% of SMBs that deployed AI automation report significant gains. The businesses moving now are building a cost advantage that becomes impossible to close.</p>
+    </div>
+
+  </div></div>
 
 <hr class="div">
 
@@ -538,10 +569,10 @@ footer p{font-size:12px;color:var(--text-soft);}
 <div class="sec reveal" id="modules">
   <div class="mod-header">
     <div>
-      <div class="sec-eye">The Modules</div>
-      <h2 class="sec-h">9 modules. <em>One agent.</em></h2>
+      <div class="sec-eye">Modules · Calculator · Pricing</div>
+      <h2 class="sec-h">Pick your modules.<br><em>See your plan.</em></h2>
     </div>
-    <p class="mod-note">Click modules to build your plan and see your ROI below.</p>
+    <p class="mod-note">Select what you want to automate — your ROI and recommended plan update instantly below.</p>
   </div>
   <div class="mod-grid">
     <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Communications',8,1500)"><span class="mod-badge">High ROI</span><div class="mod-check">✓</div><div class="mod-ico">📬</div><div class="mod-name">Communications</div><div class="mod-desc">Reads context, understands intent, drafts responses, routes to the right person, and follows up — across email, WhatsApp, and Slack simultaneously.</div><div class="mod-items"><span class="mi">Intent detection & priority triage</span><span class="mi">Context-aware auto-drafting</span><span class="mi">Multi-channel routing</span><span class="mi">Autonomous follow-up sequencing</span></div></div>
@@ -554,11 +585,13 @@ footer p{font-size:12px;color:var(--text-soft);}
     <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Reporting & Intelligence',8,1500)"><div class="mod-check">✓</div><div class="mod-ico">📊</div><div class="mod-name">Business Intelligence</div><div class="mod-desc">Not just reports — decisions with the analysis already done. Synthesises data across every function, surfaces anomalies, and benchmarks performance against industry trends.</div><div class="mod-items"><span class="mi">Cross-function data synthesis</span><span class="mi">Anomaly & root cause detection</span><span class="mi">Industry benchmarking</span><span class="mi">Executive briefings on demand</span></div></div>
     <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'IT & Operations',5,1000)"><div class="mod-check">✓</div><div class="mod-ico">⚙️</div><div class="mod-name">IT & Operations</div><div class="mod-desc">Infrastructure that manages itself. Monitors uptime, detects security anomalies, manages vendor contracts, and flags compliance issues before they become incidents.</div><div class="mod-items"><span class="mi">Uptime & performance monitoring</span><span class="mi">Security anomaly detection</span><span class="mi">Vendor & licence lifecycle management</span><span class="mi">Compliance & audit trail automation</span></div></div>
   </div>
-  <div class="calc-box reveal">
+
+  <!-- CALCULATOR -->
+  <div class="calc-box reveal" style="margin-top:40px;">
     <div class="calc-header">
       <div>
-        <h3>See your return before you commit.</h3>
-        <p class="calc-subtext" id="calcSubtext">Select the functions your business runs — we'll show you what automation is worth.</p>
+        <h3>Your ROI estimate.</h3>
+        <p class="calc-subtext" id="calcSubtext">Select modules above — we'll show you what automation is worth.</p>
       </div>
       <button class="calc-reset" onclick="resetMods()" id="calcResetBtn" style="display:none;">Clear all</button>
     </div>
@@ -576,29 +609,55 @@ footer p{font-size:12px;color:var(--text-soft);}
     <div class="calc-selected" id="calcChips">
       <div class="calc-empty-state">
         <div class="calc-empty-provocative">Every day without automation costs you.</div>
-        <div class="calc-empty-hint">Select modules above or below to calculate your ROI.</div>
+        <div class="calc-empty-hint">Select modules above or in the grid to calculate your ROI.</div>
       </div>
     </div>
     <div class="calc-results" id="calcResultsBox" style="opacity:0.3;pointer-events:none;">
-      <div class="calc-result">
-        <div class="big" id="calcHours">—</div>
-        <div class="lbl">Hours reclaimed / week</div>
-      </div>
-      <div class="calc-result">
-        <div class="big" id="calcWorkflows">—</div>
-        <div class="lbl">Workflows off your plate</div>
-      </div>
-      <div class="calc-result">
-        <div class="big" id="calcSaving">—</div>
-        <div class="lbl">Est. value added / month</div>
-      </div>
-      <div class="calc-result">
-        <div class="big" id="calcPayback">—</div>
-        <div class="lbl">Break-even point</div>
-      </div>
+      <div class="calc-result"><div class="big" id="calcHours">—</div><div class="lbl">Hours reclaimed / week</div></div>
+      <div class="calc-result"><div class="big" id="calcWorkflows">—</div><div class="lbl">Workflows off your plate</div></div>
+      <div class="calc-result"><div class="big" id="calcSaving">—</div><div class="lbl">Est. value added / month</div></div>
+      <div class="calc-result"><div class="big" id="calcPayback">—</div><div class="lbl">Break-even point</div></div>
     </div>
     <div class="calc-footer" id="calcFooter" style="display:none;">
       <p class="calc-footnote">Based on avg. $65/hr loaded labour cost · <a href="#waitlist" onclick="scrollToWaitlist()">Get a personalised audit →</a></p>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div style="margin-top:64px;" id="pricing">
+    <div class="sec-eye" style="margin-bottom:12px;">Pricing</div>
+    <h2 class="sec-h" style="margin-bottom:8px;">Simple, modular <em>pricing.</em></h2>
+    <p class="sec-p" id="pricingSubtext">Start with what hurts most. Add more modules as you grow. No lock-in, no surprises.</p>
+    <div class="tier-hint" id="tierHint"></div>
+    <div class="price-grid">
+      <div class="pc reveal reveal-1" id="pc-starter">
+        <div class="pc-tier">Starter</div>
+        <div class="pc-price">$1,500<span class="sm"> setup</span></div>
+        <div class="pc-per">+ $500 / month</div>
+        <hr class="pc-hr">
+        <p class="pc-desc">For small businesses wanting to automate 1–2 core functions and see results fast.</p>
+        <ul class="pc-list"><li>Up to 2 modules activated</li><li>Workflow audit included</li><li>NemoClaw secure deployment</li><li>30-day onboarding support</li><li>Monthly performance review</li><li class="no">Custom integrations</li><li class="no">Dedicated account manager</li></ul>
+        <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Get Started</button>
+      </div>
+      <div class="pc feat reveal reveal-2" id="pc-growth">
+        <div class="feat-tag">Most Popular</div>
+        <div class="pc-tier">Growth</div>
+        <div class="pc-price">$4,500<span class="sm"> setup</span></div>
+        <div class="pc-per">+ $1,500 / month</div>
+        <hr class="pc-hr">
+        <p class="pc-desc">For growing businesses ready to automate 3–5 functions and hit that 50% target.</p>
+        <ul class="pc-list"><li>Up to 5 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw secure deployment</li><li>60-day onboarding support</li><li>Bi-weekly performance reviews</li><li>Custom integrations (up to 3)</li><li class="no">Dedicated account manager</li></ul>
+        <button class="pbtn pbtn-white" onclick="scrollToWaitlist()">Get Started</button>
+      </div>
+      <div class="pc reveal reveal-3" id="pc-scale">
+        <div class="pc-tier">Scale</div>
+        <div class="pc-price">$10k<span class="sm"> setup</span></div>
+        <div class="pc-per">+ $3,000 / month</div>
+        <hr class="pc-hr">
+        <p class="pc-desc">For mid-market businesses automating all 9 functions with a dedicated team.</p>
+        <ul class="pc-list"><li>All 9 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw enterprise deployment</li><li>90-day white-glove onboarding</li><li>Weekly performance reviews</li><li>Unlimited custom integrations</li><li>Dedicated account manager</li></ul>
+        <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Contact Sales</button>
+      </div>
     </div>
   </div>
 </div>
@@ -674,43 +733,6 @@ footer p{font-size:12px;color:var(--text-soft);}
 </div>
 
 <hr class="div">
-
-<!-- PRICING -->
-<div class="sec reveal" id="pricing">
-  <div class="sec-eye">Pricing</div>
-  <h2 class="sec-h">Simple, modular <em>pricing.</em></h2>
-  <p class="sec-p">Start with what hurts most. Add more modules as you grow. No lock-in, no surprises.</p>
-  <div class="price-grid">
-    <div class="pc reveal reveal-1">
-      <div class="pc-tier">Starter</div>
-      <div class="pc-price">$1,500<span class="sm"> setup</span></div>
-      <div class="pc-per">+ $500 / month</div>
-      <hr class="pc-hr">
-      <p class="pc-desc">For small businesses wanting to automate 1–2 core functions and see results fast.</p>
-      <ul class="pc-list"><li>Up to 2 modules activated</li><li>Workflow audit included</li><li>NemoClaw secure deployment</li><li>30-day onboarding support</li><li>Monthly performance review</li><li class="no">Custom integrations</li><li class="no">Dedicated account manager</li></ul>
-      <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Get Started</button>
-    </div>
-    <div class="pc feat reveal reveal-2">
-      <div class="feat-tag">Most Popular</div>
-      <div class="pc-tier">Growth</div>
-      <div class="pc-price">$4,500<span class="sm"> setup</span></div>
-      <div class="pc-per">+ $1,500 / month</div>
-      <hr class="pc-hr">
-      <p class="pc-desc">For growing businesses ready to automate 4–5 functions and hit that 50% target.</p>
-      <ul class="pc-list"><li>Up to 5 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw secure deployment</li><li>60-day onboarding support</li><li>Bi-weekly performance reviews</li><li>Custom integrations (up to 3)</li><li class="no">Dedicated account manager</li></ul>
-      <button class="pbtn pbtn-white" onclick="scrollToWaitlist()">Get Started</button>
-    </div>
-    <div class="pc reveal reveal-3">
-      <div class="pc-tier">Scale</div>
-      <div class="pc-price">$10k<span class="sm"> setup</span></div>
-      <div class="pc-per">+ $3,000 / month</div>
-      <hr class="pc-hr">
-      <p class="pc-desc">For mid-market businesses automating all 9 functions with a dedicated team.</p>
-      <ul class="pc-list"><li>All 9 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw enterprise deployment</li><li>90-day white-glove onboarding</li><li>Weekly performance reviews</li><li>Unlimited custom integrations</li><li>Dedicated account manager</li></ul>
-      <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Contact Sales</button>
-    </div>
-  </div>
-</div>
 
 <hr class="div">
 
@@ -841,6 +863,42 @@ function toggleMod(el,name,hours,saving){
   const cnt=document.getElementById('stickyCount');cnt.classList.remove('pop');void cnt.offsetWidth;cnt.classList.add('pop');
   updateCalc();
 }
+function updatePricingTier(n){
+  var starter=document.getElementById('pc-starter');
+  var growth=document.getElementById('pc-growth');
+  var scale=document.getElementById('pc-scale');
+  var hint=document.getElementById('tierHint');
+  var subtext=document.getElementById('pricingSubtext');
+  if(!starter||!growth||!scale)return;
+  [starter,growth,scale].forEach(function(pc){
+    pc.classList.remove('tier-active','tier-dimmed');
+  });
+  if(n===0){
+    if(hint){hint.textContent='';hint.classList.remove('visible');}
+    if(subtext){subtext.textContent='Start with what hurts most. Add more modules as you grow. No lock-in, no surprises.';}
+    return;
+  }
+  var tierName, modules;
+  if(n<=2){
+    starter.classList.add('tier-active');
+    growth.classList.add('tier-dimmed');
+    scale.classList.add('tier-dimmed');
+    tierName='Starter'; modules=n;
+  } else if(n<=5){
+    starter.classList.add('tier-dimmed');
+    growth.classList.add('tier-active');
+    scale.classList.add('tier-dimmed');
+    tierName='Growth'; modules=n;
+  } else {
+    starter.classList.add('tier-dimmed');
+    growth.classList.add('tier-dimmed');
+    scale.classList.add('tier-active');
+    tierName='Scale'; modules=n;
+  }
+  if(hint){hint.textContent='Based on your '+modules+' module selection'+(modules>1?'s':'')+', the '+tierName+' plan is the best fit for you.';hint.classList.add('visible');}
+  if(subtext){subtext.textContent='Based on your selections above, here\'s the plan that fits your business.';}
+}
+
 function resetMods(){selectedMods=[];document.querySelectorAll('.mod').forEach(m=>m.classList.remove('selected'));updateCalc();}
 function updateCalc(){
   const n=selectedMods.length;
@@ -881,7 +939,8 @@ function updateCalc(){
   // sync mini buttons
   syncMiniButtons();
 
-  // sticky bar
+  // update pricing tier highlight
+  updatePricingTier(n);
   const bar=document.getElementById('stickyCalc');
   if(window.innerWidth<=900){
     if(n>0){
