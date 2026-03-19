@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Actuate AI — Automate 50% of Your Business in 30 Days</title>
+<link href="https://fonts.googleapis.com/css2?family=Cabinet+Grotesk:wght@300;400;500;600;700;800;900&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0C0E14;
+  --surface: #13161F;
+  --surface2: #181C27;
+  --surface3: #1E2330;
+  --border: rgba(255,255,255,0.07);
+  --border-med: rgba(255,255,255,0.12);
+  --text: #F0F2F7;
+  --text-mid: #8B90A0;
+  --text-soft: #555A6B;
+  --accent: #4F7EFF;
+  --accent2: #7B6EF6;
+  --accent3: #00C2A8;
+  --accent-glow: rgba(79,126,255,0.15);
+  --r: 16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Instrument Sans',sans-serif;font-weight:400;line-height:1.6;overflow-x:hidden;}
+h1,h2,h3,h4{font-family:'Cabinet Grotesk',sans-serif;}
+
+/* MESH */
+.mesh{position:fixed;inset:0;z-index:-1;
+  background:
+    radial-gradient(ellipse 70% 50% at 15% 0%,rgba(79,126,255,.08) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 40% at 88% 10%,rgba(123,110,246,.07) 0%,transparent 55%),
+    radial-gradient(ellipse 40% 60% at 50% 110%,rgba(0,194,168,.05) 0%,transparent 60%),
+    #0C0E14;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:16px 48px;display:flex;align-items:center;justify-content:space-between;background:rgba(12,14,20,.85);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Cabinet Grotesk',sans-serif;font-weight:800;font-size:20px;display:flex;align-items:center;gap:9px;color:var(--text);text-decoration:none;letter-spacing:-.3px;}
+.logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#4F7EFF,#7B6EF6);display:flex;align-items:center;justify-content:center;font-size:15px;box-shadow:0 2px 12px rgba(79,126,255,.4);}
+.logo-dot{color:var(--accent);}
+.nav-links{display:flex;align-items:center;gap:28px;}
+.nav-links a{font-size:14px;color:var(--text-mid);text-decoration:none;transition:color .2s;font-weight:500;}
+.nav-links a:hover{color:var(--text);}
+.nav-cta{background:var(--accent);color:#fff;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:13.5px;padding:10px 20px;border-radius:100px;text-decoration:none;transition:all .2s;box-shadow:0 0 20px rgba(79,126,255,.3);}
+.nav-cta:hover{background:#6090FF;transform:translateY(-1px);box-shadow:0 4px 24px rgba(79,126,255,.45);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all .3s;}
+
+/* MOBILE MENU */
+.mobile-menu{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(12,14,20,.97);z-index:190;flex-direction:column;align-items:center;justify-content:center;gap:28px;backdrop-filter:blur(20px);}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:'Cabinet Grotesk',sans-serif;font-size:28px;font-weight:800;color:var(--text);text-decoration:none;}
+.mobile-menu a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:130px 48px 80px;max-width:1100px;margin:0 auto;}
+.eyebrow-pill{display:inline-flex;align-items:center;gap:8px;background:var(--surface2);border:1px solid var(--border-med);border-radius:100px;padding:7px 16px;font-size:12.5px;font-weight:500;color:var(--text-mid);margin-bottom:32px;width:fit-content;opacity:0;animation:fadeUp .7s .1s ease forwards;}
+.live-dot{width:7px;height:7px;background:var(--accent3);border-radius:50%;animation:breathe 2.5s ease infinite;flex-shrink:0;}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(.7);opacity:.4;}}
+.hero h1{font-size:clamp(48px,6.5vw,90px);font-weight:900;line-height:1.0;letter-spacing:-3px;max-width:860px;opacity:0;animation:fadeUp .7s .18s ease forwards;}
+.grad{background:linear-gradient(135deg,#4F7EFF 0%,#7B6EF6 50%,#00C2A8 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.soft{color:#2A2E3D;}
+.hero-sub{font-size:18px;color:var(--text-mid);max-width:500px;margin-top:24px;line-height:1.75;opacity:0;animation:fadeUp .7s .26s ease forwards;}
+.hero-cta{display:flex;align-items:center;gap:14px;margin-top:40px;flex-wrap:wrap;opacity:0;animation:fadeUp .7s .34s ease forwards;}
+.btn-accent{background:var(--accent);color:#fff;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:14.5px;padding:14px 28px;border-radius:100px;border:none;cursor:pointer;transition:all .2s;text-decoration:none;display:inline-block;box-shadow:0 0 24px rgba(79,126,255,.35);}
+.btn-accent:hover{background:#6090FF;transform:translateY(-1px);box-shadow:0 8px 32px rgba(79,126,255,.5);}
+.btn-ghost{color:var(--text-mid);font-family:'Instrument Sans',sans-serif;font-weight:500;font-size:14px;background:none;border:1px solid var(--border-med);padding:14px 24px;border-radius:100px;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s;text-decoration:none;}
+.btn-ghost:hover{color:var(--text);border-color:var(--border-med);}
+.stats-row{display:flex;margin-top:64px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;opacity:0;animation:fadeUp .7s .42s ease forwards;}
+.stat{flex:1;padding:24px 28px;border-right:1px solid var(--border);}
+.stat:last-child{border-right:none;}
+.stat-n{font-family:'Cabinet Grotesk',sans-serif;font-size:32px;font-weight:900;letter-spacing:-1.5px;line-height:1;color:var(--text);}
+.stat-n .a{color:var(--accent);}
+.stat-l{font-size:12.5px;color:var(--text-soft);margin-top:4px;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:translateY(0);}}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s ease,transform .65s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:.1s;}
+.reveal-delay-2{transition-delay:.2s;}
+.reveal-delay-3{transition-delay:.3s;}
+
+/* SECTIONS */
+.sec{max-width:1100px;margin:0 auto;padding:88px 48px;}
+.sec-eye{display:inline-flex;align-items:center;gap:8px;font-size:11.5px;font-weight:600;color:var(--accent);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px;font-family:'Instrument Sans',sans-serif;}
+.sec-eye::before{content:'';display:block;width:16px;height:2px;background:var(--accent);border-radius:2px;}
+.sec-h{font-size:clamp(32px,4vw,52px);font-weight:900;letter-spacing:-1.5px;line-height:1.05;color:var(--text);}
+.sec-p{font-size:16px;color:var(--text-mid);max-width:460px;margin-top:12px;line-height:1.75;}
+hr.div{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 auto;}
+
+/* PROBLEM */
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:44px;}
+.prob-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:28px;position:relative;transition:border-color .2s,box-shadow .2s;}
+.prob-card:hover{border-color:var(--border-med);box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.prob-x{position:absolute;top:22px;right:22px;width:22px;height:22px;background:rgba(255,80,80,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;color:#FF5050;font-weight:700;}
+.prob-card h4{font-size:15px;font-weight:700;margin-bottom:8px;padding-right:30px;letter-spacing:-.2px;}
+.prob-card p{font-size:13.5px;color:var(--text-mid);line-height:1.65;}
+
+/* INDUSTRIES */
+.ind-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.ind-tabs{display:flex;gap:8px;margin-top:36px;flex-wrap:wrap;}
+.ind-tab{padding:9px 18px;border-radius:100px;font-size:13px;font-weight:500;cursor:pointer;border:1px solid var(--border);background:none;color:var(--text-mid);transition:all .2s;font-family:'Instrument Sans',sans-serif;}
+.ind-tab.active,.ind-tab:hover{border-color:var(--accent);color:var(--accent);background:rgba(79,126,255,.08);}
+.ind-panels{margin-top:24px;}
+.ind-panel{display:none;grid-template-columns:1fr 1fr;gap:10px;}
+.ind-panel.active{display:grid;}
+.ind-card{background:var(--bg);border:1px solid var(--border);border-radius:var(--r);padding:24px;transition:border-color .2s;}
+.ind-card:hover{border-color:var(--border-med);}
+.ind-card h4{font-size:14px;font-weight:700;margin-bottom:7px;letter-spacing:-.2px;}
+.ind-card p{font-size:13px;color:var(--text-mid);line-height:1.65;margin-bottom:13px;}
+.ind-tags{display:flex;flex-wrap:wrap;gap:5px;}
+.ind-tag{font-size:11px;font-weight:500;padding:3px 9px;border-radius:100px;background:rgba(79,126,255,.1);color:var(--accent);font-family:'Instrument Sans',sans-serif;}
+
+/* MODULES */
+.mod-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:28px;gap:20px;}
+.mod-note{max-width:220px;font-size:13px;color:var(--text-soft);text-align:right;line-height:1.6;}
+.mod-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
+.mod{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:22px;transition:all .22s;position:relative;overflow:hidden;cursor:pointer;}
+.mod::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--c,#4F7EFF);opacity:0;transition:opacity .22s;}
+.mod:hover{border-color:var(--border-med);box-shadow:0 8px 32px rgba(0,0,0,.3);transform:translateY(-2px);}
+.mod:hover::before{opacity:1;}
+.mod.selected{border-color:var(--c,#4F7EFF);box-shadow:0 0 0 1px var(--c,#4F7EFF),0 8px 32px rgba(0,0,0,.3);}
+.mod.selected::before{opacity:1;}
+.mod-ico{width:38px;height:38px;border-radius:10px;background:var(--ibg);display:flex;align-items:center;justify-content:center;font-size:17px;margin-bottom:12px;}
+.mod-badge{position:absolute;top:14px;right:14px;font-size:9px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:3px 7px;border-radius:100px;background:var(--bbg,rgba(79,126,255,.15));color:var(--bc,#4F7EFF);font-family:'Instrument Sans',sans-serif;}
+.mod-name{font-size:14px;font-weight:700;margin-bottom:5px;letter-spacing:-.2px;}
+.mod-desc{font-size:12px;color:var(--text-mid);line-height:1.6;margin-bottom:12px;}
+.mod-items{display:flex;flex-direction:column;gap:4px;}
+.mi{font-size:11.5px;color:var(--text-soft);display:flex;align-items:center;gap:6px;}
+.mi::before{content:'';width:3px;height:3px;border-radius:50%;background:var(--c,#4F7EFF);flex-shrink:0;opacity:.8;}
+.mod-check{position:absolute;bottom:14px;right:14px;width:18px;height:18px;border-radius:50%;background:var(--c,#4F7EFF);display:none;align-items:center;justify-content:center;color:#fff;font-size:9px;font-weight:700;}
+.mod.selected .mod-check{display:flex;}
+
+/* CALCULATOR */
+.calc-box{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:32px;margin-top:24px;}
+.calc-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;flex-wrap:wrap;gap:10px;}
+.calc-header h3{font-size:17px;font-weight:700;letter-spacing:-.3px;}
+.calc-reset{font-size:12px;color:var(--text-soft);background:none;border:none;cursor:pointer;font-family:'Instrument Sans',sans-serif;text-decoration:underline;}
+.calc-selected{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:18px;min-height:28px;}
+.calc-chip{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:500;padding:4px 10px;border-radius:100px;background:rgba(79,126,255,.12);color:var(--accent);border:1px solid rgba(79,126,255,.2);font-family:'Instrument Sans',sans-serif;}
+.calc-chip button{background:none;border:none;cursor:pointer;color:var(--accent);font-size:13px;line-height:1;padding:0;}
+.calc-results{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;}
+.calc-result{background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.calc-result .big{font-family:'Cabinet Grotesk',sans-serif;font-size:26px;font-weight:900;letter-spacing:-1px;color:var(--text);line-height:1;}
+.calc-result .big .a{color:var(--accent);}
+.calc-result .lbl{font-size:11.5px;color:var(--text-soft);margin-top:4px;}
+.calc-empty{font-size:13.5px;color:var(--text-soft);padding:8px 0;font-style:italic;}
+
+/* HOW IT WORKS */
+.how-bg{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:44px;}
+.step{padding-right:24px;border-right:1px solid var(--border);margin-right:24px;}
+.step:last-child{border-right:none;padding-right:0;margin-right:0;}
+.step-n{width:42px;height:42px;border-radius:50%;background:var(--bg);border:1px solid var(--border-med);display:flex;align-items:center;justify-content:center;font-family:'Cabinet Grotesk',sans-serif;font-size:16px;font-weight:900;color:var(--accent);margin-bottom:18px;}
+.step h4{font-size:14px;font-weight:700;margin-bottom:7px;letter-spacing:-.2px;}
+.step p{font-size:13px;color:var(--text-mid);line-height:1.65;}
+
+/* ROI */
+.roi-box{background:linear-gradient(135deg,#0A0C12 0%,#101420 100%);border:1px solid var(--border-med);border-radius:20px;padding:52px;margin-top:64px;display:grid;grid-template-columns:1.2fr 1fr;gap:52px;align-items:center;position:relative;overflow:hidden;}
+.roi-box::before{content:'';position:absolute;top:-80px;right:-80px;width:340px;height:340px;background:radial-gradient(circle,rgba(79,126,255,.1) 0%,transparent 70%);}
+.roi-box::after{content:'';position:absolute;bottom:-80px;left:20%;width:380px;height:280px;background:radial-gradient(circle,rgba(123,110,246,.07) 0%,transparent 70%);}
+.roi-eye{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:16px;font-family:'Instrument Sans',sans-serif;display:flex;align-items:center;gap:8px;}
+.roi-eye::before{content:'';display:block;width:14px;height:2px;background:var(--accent);border-radius:2px;}
+.roi-h{font-size:38px;font-weight:900;letter-spacing:-1.5px;color:#fff;line-height:1.08;margin-bottom:16px;}
+.roi-cool{background:linear-gradient(90deg,#4F7EFF,#00C2A8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.roi-sub{font-size:14px;color:rgba(255,255,255,.4);line-height:1.8;}
+.roi-nums{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative;z-index:1;}
+.rn{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:20px;}
+.rn-big{font-family:'Cabinet Grotesk',sans-serif;font-size:32px;font-weight:900;letter-spacing:-1px;color:#fff;line-height:1;}
+.rn-l{font-size:11.5px;color:rgba(255,255,255,.35);margin-top:5px;line-height:1.5;}
+
+/* COMPARISON */
+.comp-table{width:100%;margin-top:40px;border-collapse:collapse;border-radius:var(--r);overflow:hidden;border:1px solid var(--border);}
+.comp-table th{background:var(--surface);padding:15px 18px;text-align:left;font-size:12.5px;font-weight:700;font-family:'Cabinet Grotesk',sans-serif;border-bottom:1px solid var(--border);color:var(--text);}
+.comp-table th.hl{background:rgba(79,126,255,.08);color:var(--accent);}
+.comp-table td{padding:13px 18px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text-mid);background:var(--surface);}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table td.hl{background:rgba(79,126,255,.04);}
+.comp-table td:first-child{font-weight:600;color:var(--text);font-size:12.5px;}
+.cy{color:#00C2A8;font-weight:700;font-size:15px;}
+.cn{color:#2A2E3D;font-size:15px;}
+.cp{color:var(--accent);font-size:12px;font-weight:600;}
+
+/* TESTIMONIALS */
+.test-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:40px;}
+.test-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:26px;position:relative;transition:border-color .2s,box-shadow .2s;}
+.test-card:hover{border-color:var(--border-med);box-shadow:0 8px 32px rgba(0,0,0,.3);}
+.test-stars{color:#F59E0B;font-size:13px;margin-bottom:13px;letter-spacing:2px;}
+.test-quote{font-size:14px;color:var(--text);line-height:1.7;margin-bottom:18px;}
+.test-quote::before{content:'"';font-family:'Cabinet Grotesk',sans-serif;font-size:44px;color:rgba(79,126,255,.2);line-height:.8;display:block;margin-bottom:8px;}
+.test-author{display:flex;align-items:center;gap:10px;}
+.test-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.test-name{font-size:13px;font-weight:600;letter-spacing:-.1px;}
+.test-role{font-size:11.5px;color:var(--text-soft);}
+.test-industry{position:absolute;top:20px;right:20px;font-size:10px;font-weight:600;padding:3px 8px;border-radius:100px;background:rgba(255,255,255,.06);color:var(--text-soft);font-family:'Instrument Sans',sans-serif;}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:40px;}
+.pc{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;position:relative;transition:border-color .2s,box-shadow .2s;}
+.pc:hover{border-color:var(--border-med);box-shadow:0 12px 40px rgba(0,0,0,.3);}
+.pc.feat{background:linear-gradient(160deg,#0F1320 0%,#141828 100%);border-color:rgba(79,126,255,.3);box-shadow:0 0 0 1px rgba(79,126,255,.1),0 20px 60px rgba(0,0,0,.4);}
+.feat-tag{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,#4F7EFF,#7B6EF6);color:#fff;font-family:'Instrument Sans',sans-serif;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:5px 15px;border-radius:0 0 9px 9px;white-space:nowrap;}
+.pc-tier{font-size:10.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text-soft);margin-bottom:10px;font-family:'Instrument Sans',sans-serif;}
+.pc-price{font-family:'Cabinet Grotesk',sans-serif;font-size:42px;font-weight:900;letter-spacing:-2px;line-height:1;color:var(--text);}
+.pc-price .sm{font-size:15px;font-weight:500;letter-spacing:0;color:var(--text-soft);}
+.pc-per{font-size:12.5px;color:var(--text-soft);margin:4px 0 16px;}
+.pc-hr{border:none;border-top:1px solid var(--border);margin-bottom:16px;}
+.pc-desc{font-size:13px;color:var(--text-mid);line-height:1.65;margin-bottom:16px;}
+.pc-list{list-style:none;display:flex;flex-direction:column;gap:9px;margin-bottom:24px;}
+.pc-list li{font-size:12.5px;color:var(--text-mid);display:flex;align-items:flex-start;gap:8px;line-height:1.45;}
+.pc-list li::before{content:'✓';color:var(--accent3);font-weight:700;font-size:11px;flex-shrink:0;margin-top:1px;}
+.pc-list li.no{opacity:.3;}
+.pc-list li.no::before{content:'–';color:var(--text-soft);}
+.pbtn{width:100%;padding:12px;border-radius:100px;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;}
+.pbtn-outline{background:none;border:1px solid var(--border-med);color:var(--text);}
+.pbtn-outline:hover{border-color:var(--text);}
+.pbtn-accent{background:var(--accent);border:none;color:#fff;box-shadow:0 4px 20px rgba(79,126,255,.35);}
+.pbtn-accent:hover{background:#6090FF;transform:translateY(-1px);box-shadow:0 8px 28px rgba(79,126,255,.5);}
+
+/* FAQ */
+.faq-list{margin-top:40px;display:flex;flex-direction:column;gap:0;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;}
+.faq-item{background:var(--surface);border-bottom:1px solid var(--border);}
+.faq-item:last-child{border-bottom:none;}
+.faq-q{width:100%;padding:20px 26px;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;font-family:'Cabinet Grotesk',sans-serif;font-size:15px;font-weight:700;color:var(--text);transition:background .2s;letter-spacing:-.2px;}
+.faq-q:hover{background:rgba(255,255,255,.02);}
+.faq-q.open{color:var(--accent);}
+.faq-icon{width:22px;height:22px;border-radius:50%;background:var(--surface2);border:1px solid var(--border-med);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;transition:all .25s;color:var(--text-soft);}
+.faq-q.open .faq-icon{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .35s ease;}
+.faq-a.open{max-height:300px;}
+.faq-a-inner{padding:0 26px 20px;font-size:14px;color:var(--text-mid);line-height:1.8;}
+
+/* WAITLIST */
+.waitlist-wrap{background:var(--surface);border-top:1px solid var(--border);}
+.waitlist-inner{max-width:1100px;margin:0 auto;padding:88px 48px;text-align:center;}
+.waitlist-inner h2{font-size:clamp(34px,5vw,60px);font-weight:900;letter-spacing:-2px;line-height:1.05;max-width:600px;margin:0 auto 16px;}
+.waitlist-inner p{font-size:16px;color:var(--text-mid);max-width:400px;margin:0 auto 32px;line-height:1.75;}
+.market-badges{display:flex;gap:8px;justify-content:center;margin-bottom:24px;flex-wrap:wrap;}
+.market-badge{display:inline-flex;align-items:center;gap:6px;background:var(--surface2);border:1px solid var(--border);border-radius:100px;padding:6px 14px;font-size:12px;font-weight:500;color:var(--text-mid);}
+.waitlist-form{display:flex;gap:10px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center;}
+.waitlist-input{flex:1;min-width:200px;padding:13px 20px;border:1px solid var(--border-med);border-radius:100px;font-family:'Instrument Sans',sans-serif;font-size:14px;color:var(--text);background:var(--surface2);outline:none;transition:border-color .2s;}
+.waitlist-input:focus{border-color:var(--accent);}
+.waitlist-input::placeholder{color:var(--text-soft);}
+.waitlist-btn{background:var(--accent);color:#fff;font-family:'Instrument Sans',sans-serif;font-weight:600;font-size:14px;padding:13px 26px;border-radius:100px;border:none;cursor:pointer;transition:all .2s;white-space:nowrap;box-shadow:0 4px 20px rgba(79,126,255,.35);}
+.waitlist-btn:hover{background:#6090FF;transform:translateY(-1px);box-shadow:0 8px 28px rgba(79,126,255,.5);}
+.waitlist-success{display:none;align-items:center;gap:10px;justify-content:center;font-size:14.5px;color:var(--accent3);font-weight:600;}
+.fn{font-size:12px;color:var(--text-soft);margin-top:16px;}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+footer p{font-size:12px;color:var(--text-soft);}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .hero,.sec,.waitlist-inner{padding-left:20px;padding-right:20px;}
+  .hero{padding-top:110px;}
+  .hero h1{font-size:44px;letter-spacing:-2px;}
+  .mod-grid,.price-grid,.test-grid{grid-template-columns:1fr 1fr;}
+  .prob-grid,.ind-panel{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr 1fr;gap:28px;}
+  .step{border-right:none;padding-right:0;margin-right:0;}
+  .stats-row{flex-direction:column;}
+  .stat{border-right:none;border-bottom:1px solid var(--border);}
+  .stat:last-child{border-bottom:none;}
+  .roi-box{grid-template-columns:1fr;padding:30px 22px;}
+  .mod-header{flex-direction:column;align-items:flex-start;}
+  .mod-note{text-align:left;max-width:100%;}
+  .calc-results{grid-template-columns:1fr 1fr;}
+  footer{flex-direction:column;text-align:center;}
+}
+@media(max-width:580px){
+  .mod-grid,.price-grid,.test-grid{grid-template-columns:1fr;}
+  .steps{grid-template-columns:1fr;}
+  .hero h1{font-size:38px;}
+  .roi-nums{grid-template-columns:1fr 1fr;}
+}
+</style>
+</head>
+<body>
+<div class="mesh"></div>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#modules" onclick="closeMobile()">Modules</a>
+  <a href="#industries" onclick="closeMobile()">Industries</a>
+  <a href="#pricing" onclick="closeMobile()">Pricing</a>
+  <a href="#faq" onclick="closeMobile()">FAQ</a>
+  <a href="#waitlist" onclick="closeMobile()" style="color:var(--accent)">Get Early Access</a>
+</div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><div class="logo-mark">🦞</div>Actuate<span class="logo-dot"> AI</span></a>
+  <div class="nav-links">
+    <a href="#modules">Modules</a>
+    <a href="#industries">Industries</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="#waitlist" class="nav-cta">Get Early Access</a>
+  </div>
+  <div class="hamburger" onclick="toggleMobile()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="eyebrow-pill"><div class="live-dot"></div>Powered by OpenClaw + NemoClaw · Singapore & Australia</div>
+  <h1>Automate <span class="grad">50%</span><br>of your business<br><span class="soft">in 30 days.</span></h1>
+  <p class="hero-sub">Actuate AI deploys an autonomous AI agent for your business — handling communications, sales, marketing, and operations while your team focuses on growth.</p>
+  <div class="hero-cta">
+    <a href="#waitlist" class="btn-accent">Get Early Access</a>
+    <a href="#modules" class="btn-ghost">See what we automate →</a>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-n">50<span class="a">%</span></div><div class="stat-l">Workflows automated</div></div>
+    <div class="stat"><div class="stat-n">30<span class="a">d</span></div><div class="stat-l">To full deployment</div></div>
+    <div class="stat"><div class="stat-n">9</div><div class="stat-l">Business functions covered</div></div>
+    <div class="stat"><div class="stat-n">$50<span style="font-size:15px;font-weight:500;color:var(--text-soft);">/mo</span></div><div class="stat-l">Avg. AI running costs</div></div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- PROBLEM -->
+<div class="sec reveal">
+  <div class="sec-eye">The Problem</div>
+  <h2 class="sec-h">Your team is drowning<br><span class="soft">in busywork.</span></h2>
+  <p class="sec-p">The average SMB employee spends 60% of their day on repetitive digital tasks. That's your growth budget going nowhere.</p>
+  <div class="prob-grid">
+    <div class="prob-card reveal reveal-delay-1"><div class="prob-x">✕</div><h4>Inbox overload</h4><p>Hours lost reading, sorting, and responding to emails that follow the same patterns every single week.</p></div>
+    <div class="prob-card reveal reveal-delay-2"><div class="prob-x">✕</div><h4>Leads falling through cracks</h4><p>Follow-ups missed, deals stalled, pipelines unmaintained — not because no one cares, but because there's no time.</p></div>
+    <div class="prob-card reveal reveal-delay-1"><div class="prob-x">✕</div><h4>Reporting done manually</h4><p>Someone builds the same spreadsheet every Friday. And the Friday before that. And the one before that.</p></div>
+    <div class="prob-card reveal reveal-delay-2"><div class="prob-x">✕</div><h4>Inconsistent onboarding</h4><p>Every new client or employee gets a different experience depending on who happens to be handling it that week.</p></div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- INDUSTRIES -->
+<div class="ind-bg" id="industries">
+  <div class="sec reveal">
+    <div class="sec-eye">Industries</div>
+    <h2 class="sec-h">Built for your<br><span class="soft">industry.</span></h2>
+    <p class="sec-p">Pre-built automation playbooks for Singapore and Australian SMBs across the sectors that need it most.</p>
+    <div class="ind-tabs">
+      <button class="ind-tab active" onclick="showIndustry('medical',this)">🏥 Medical & Health</button>
+      <button class="ind-tab" onclick="showIndustry('fitness',this)">💪 Fitness & Wellness</button>
+      <button class="ind-tab" onclick="showIndustry('property',this)">🏠 Property</button>
+      <button class="ind-tab" onclick="showIndustry('retail',this)">🛍️ Retail & F&B</button>
+      <button class="ind-tab" onclick="showIndustry('professional',this)">💼 Professional Services</button>
+    </div>
+    <div class="ind-panels">
+      <div class="ind-panel active" id="ind-medical">
+        <div class="ind-card"><h4>Patient Communications</h4><p>Automate appointment reminders, follow-ups after consultations, and recall campaigns for annual check-ups across WhatsApp and email.</p><div class="ind-tags"><span class="ind-tag">Appointment reminders</span><span class="ind-tag">Post-consult follow-ups</span><span class="ind-tag">Recall campaigns</span></div></div>
+        <div class="ind-card"><h4>Admin & Reporting</h4><p>Daily patient briefings, insurance claim tracking, staff scheduling nudges, and weekly practice performance summaries — all automatic.</p><div class="ind-tags"><span class="ind-tag">Daily briefings</span><span class="ind-tag">Claim tracking</span><span class="ind-tag">Performance reports</span></div></div>
+        <div class="ind-card"><h4>New Patient Onboarding</h4><p>When a new patient registers, automatically send welcome info, pre-appointment forms, clinic policies, and location details.</p><div class="ind-tags"><span class="ind-tag">Welcome sequences</span><span class="ind-tag">Form collection</span><span class="ind-tag">Clinic info</span></div></div>
+        <div class="ind-card"><h4>Reputation Management</h4><p>Monitor Google reviews and social mentions, flag complaints for urgent attention, and prompt satisfied patients to leave reviews after visits.</p><div class="ind-tags"><span class="ind-tag">Review monitoring</span><span class="ind-tag">Review prompts</span><span class="ind-tag">Complaint alerts</span></div></div>
+      </div>
+      <div class="ind-panel" id="ind-fitness">
+        <div class="ind-card"><h4>Member Retention</h4><p>Detect members who haven't visited in 7+ days and automatically send re-engagement messages with personalised incentives before they cancel.</p><div class="ind-tags"><span class="ind-tag">Churn detection</span><span class="ind-tag">Re-engagement flows</span><span class="ind-tag">Incentive messages</span></div></div>
+        <div class="ind-card"><h4>Class & Booking Management</h4><p>Automated class reminders, waitlist notifications, and post-class follow-ups asking for feedback — without your front desk lifting a finger.</p><div class="ind-tags"><span class="ind-tag">Class reminders</span><span class="ind-tag">Waitlist alerts</span><span class="ind-tag">Feedback collection</span></div></div>
+        <div class="ind-card"><h4>PT & Coaching Sales</h4><p>Follow up with members who tried a trial session, send tailored package recommendations, and handle objections via WhatsApp or email.</p><div class="ind-tags"><span class="ind-tag">Trial follow-ups</span><span class="ind-tag">Package recommendations</span><span class="ind-tag">Objection handling</span></div></div>
+        <div class="ind-card"><h4>Social & Content</h4><p>Schedule transformation posts, class highlights, and coach spotlights across Instagram, Facebook, and TikTok on a consistent weekly cadence.</p><div class="ind-tags"><span class="ind-tag">Content scheduling</span><span class="ind-tag">Transformation posts</span><span class="ind-tag">Engagement monitoring</span></div></div>
+      </div>
+      <div class="ind-panel" id="ind-property">
+        <div class="ind-card"><h4>Lead Nurturing</h4><p>Every inquiry gets an instant response, followed by a tailored property match sequence — even at 2am. Never let a hot lead go cold.</p><div class="ind-tags"><span class="ind-tag">Instant responses</span><span class="ind-tag">Property matching</span><span class="ind-tag">Follow-up sequences</span></div></div>
+        <div class="ind-card"><h4>Listing Management</h4><p>Automatically syndicate new listings across portals, generate listing descriptions, and notify matched buyers the moment a property goes live.</p><div class="ind-tags"><span class="ind-tag">Listing syndication</span><span class="ind-tag">Description generation</span><span class="ind-tag">Buyer alerts</span></div></div>
+        <div class="ind-card"><h4>Transaction Admin</h4><p>Milestone reminders, document collection nudges, and stakeholder updates throughout the transaction — so you can focus on closing.</p><div class="ind-tags"><span class="ind-tag">Milestone reminders</span><span class="ind-tag">Document chasing</span><span class="ind-tag">Stakeholder updates</span></div></div>
+        <div class="ind-card"><h4>Market Intelligence</h4><p>Daily briefings on new launches, price movements, and competitor listings in your target districts — delivered every morning.</p><div class="ind-tags"><span class="ind-tag">Market monitoring</span><span class="ind-tag">Daily briefings</span><span class="ind-tag">Competitor tracking</span></div></div>
+      </div>
+      <div class="ind-panel" id="ind-retail">
+        <div class="ind-card"><h4>Customer Re-engagement</h4><p>Identify customers who haven't purchased in 30+ days and automatically send personalised offers based on their purchase history.</p><div class="ind-tags"><span class="ind-tag">Win-back campaigns</span><span class="ind-tag">Personalised offers</span><span class="ind-tag">Purchase triggers</span></div></div>
+        <div class="ind-card"><h4>Inventory & Ops</h4><p>Low stock alerts, supplier follow-ups, and daily sales summaries delivered to your phone each evening so you're always across your numbers.</p><div class="ind-tags"><span class="ind-tag">Stock alerts</span><span class="ind-tag">Supplier nudges</span><span class="ind-tag">Sales summaries</span></div></div>
+        <div class="ind-card"><h4>Review & Reputation</h4><p>Post-purchase review requests, Google Business monitoring, and automatic flagging of negative feedback for same-day response.</p><div class="ind-tags"><span class="ind-tag">Review requests</span><span class="ind-tag">Feedback monitoring</span><span class="ind-tag">Negative alerts</span></div></div>
+        <div class="ind-card"><h4>Social Commerce</h4><p>Automated product posts, promotional campaigns, and DM responses for common inquiries like pricing, availability, and delivery times.</p><div class="ind-tags"><span class="ind-tag">Product posts</span><span class="ind-tag">DM auto-replies</span><span class="ind-tag">Promo campaigns</span></div></div>
+      </div>
+      <div class="ind-panel" id="ind-professional">
+        <div class="ind-card"><h4>Client Onboarding</h4><p>New client signed? Automatically trigger welcome emails, engagement letters, document collection, and kickoff call scheduling.</p><div class="ind-tags"><span class="ind-tag">Welcome sequences</span><span class="ind-tag">Document collection</span><span class="ind-tag">Kickoff scheduling</span></div></div>
+        <div class="ind-card"><h4>Billing & Collections</h4><p>Invoice generation, payment reminders at 7, 14, and 30 days overdue, and automatic escalation when invoices go unpaid.</p><div class="ind-tags"><span class="ind-tag">Auto-invoicing</span><span class="ind-tag">Payment reminders</span><span class="ind-tag">Escalation workflows</span></div></div>
+        <div class="ind-card"><h4>Proposal & Pitching</h4><p>Turn a brief into a polished proposal draft in minutes. Automatically follow up with prospects 3 days after sending, then again at 7.</p><div class="ind-tags"><span class="ind-tag">Proposal drafting</span><span class="ind-tag">Follow-up sequences</span><span class="ind-tag">Prospect tracking</span></div></div>
+        <div class="ind-card"><h4>Knowledge & Reporting</h4><p>Weekly client performance reports, meeting transcripts turned into action items, and a searchable knowledge base that builds itself.</p><div class="ind-tags"><span class="ind-tag">Performance reports</span><span class="ind-tag">Meeting summaries</span><span class="ind-tag">Knowledge base</span></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- MODULES + CALCULATOR -->
+<div class="sec reveal" id="modules">
+  <div class="mod-header">
+    <div>
+      <div class="sec-eye">The Modules</div>
+      <h2 class="sec-h">9 modules.<br><span class="soft">One agent.</span></h2>
+    </div>
+    <p class="mod-note">Click modules to build your plan and see your estimated ROI below.</p>
+  </div>
+  <div class="mod-grid">
+    <div class="mod" style="--c:#4F7EFF;--ibg:rgba(79,126,255,.1);--bbg:rgba(79,126,255,.12);--bc:#4F7EFF;" onclick="toggleMod(this,'Communications',8,1500)">
+      <span class="mod-badge">High ROI</span><div class="mod-check">✓</div>
+      <div class="mod-ico">📬</div><div class="mod-name">Communications</div>
+      <div class="mod-desc">AI handles your inbox, WhatsApp, and Slack — triage, draft, route, and follow up automatically.</div>
+      <div class="mod-items"><span class="mi">Email triage & priority sorting</span><span class="mi">Auto-draft responses</span><span class="mi">WhatsApp business replies</span><span class="mi">Slack message routing</span></div>
+    </div>
+    <div class="mod" style="--c:#7B6EF6;--ibg:rgba(123,110,246,.1);--bbg:rgba(123,110,246,.12);--bc:#7B6EF6;" onclick="toggleMod(this,'Sales & CRM',12,2000)">
+      <span class="mod-badge" style="--bbg:rgba(123,110,246,.12);--bc:#7B6EF6;">Popular</span><div class="mod-check">✓</div>
+      <div class="mod-ico">📣</div><div class="mod-name">Sales & CRM</div>
+      <div class="mod-desc">Leads captured, scored, followed up, and pipeline updated — without your team lifting a finger.</div>
+      <div class="mod-items"><span class="mi">Lead capture & scoring</span><span class="mi">Follow-up sequences</span><span class="mi">Pipeline status updates</span><span class="mi">Proposal sending</span></div>
+    </div>
+    <div class="mod" style="--c:#F0A030;--ibg:rgba(240,160,48,.1);" onclick="toggleMod(this,'Marketing',10,1800)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">🛒</div><div class="mod-name">Marketing</div>
+      <div class="mod-desc">Schedule, repurpose, monitor, and report across all your marketing channels on autopilot.</div>
+      <div class="mod-items"><span class="mi">Social content scheduling</span><span class="mi">Content repurposing</span><span class="mi">Brand mention monitoring</span><span class="mi">Campaign performance digests</span></div>
+    </div>
+    <div class="mod" style="--c:#00C2A8;--ibg:rgba(0,194,168,.1);" onclick="toggleMod(this,'Finance & Admin',6,1200)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">🧾</div><div class="mod-name">Finance & Admin</div>
+      <div class="mod-desc">Invoice chasing, expense categorisation, receipt processing and financial summaries automated.</div>
+      <div class="mod-items"><span class="mi">Invoice generation & chasing</span><span class="mi">Expense categorisation</span><span class="mi">Receipt processing</span><span class="mi">Weekly financial summaries</span></div>
+    </div>
+    <div class="mod" style="--c:#9B6EE8;--ibg:rgba(155,110,232,.1);" onclick="toggleMod(this,'HR & People Ops',7,1400)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">🧑‍🤝‍🧑</div><div class="mod-name">HR & People Ops</div>
+      <div class="mod-desc">From job posting to onboarding checklists — consistent people processes at any scale.</div>
+      <div class="mod-items"><span class="mi">Job post distribution</span><span class="mi">Applicant screening</span><span class="mi">Onboarding workflows</span><span class="mi">Leave & performance tracking</span></div>
+    </div>
+    <div class="mod" style="--c:#FF6B9D;--ibg:rgba(255,107,157,.1);" onclick="toggleMod(this,'Project Management',9,1600)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">🎯</div><div class="mod-name">Project Management</div>
+      <div class="mod-desc">Kickoffs, status reports, deadline nudges, and client updates generated and sent automatically.</div>
+      <div class="mod-items"><span class="mi">Project kickoff workflows</span><span class="mi">Deadline nudges</span><span class="mi">Status report generation</span><span class="mi">Client update emails</span></div>
+    </div>
+    <div class="mod" style="--c:#38BDF8;--ibg:rgba(56,189,248,.1);--bbg:rgba(56,189,248,.12);--bc:#38BDF8;" onclick="toggleMod(this,'Customer Success',11,1900)">
+      <span class="mod-badge" style="--bbg:rgba(56,189,248,.12);--bc:#38BDF8;">Popular</span><div class="mod-check">✓</div>
+      <div class="mod-ico">🛎️</div><div class="mod-name">Customer Success</div>
+      <div class="mod-desc">Tickets triaged, FAQs answered, churn spotted early, and renewals reminded — automatically.</div>
+      <div class="mod-items"><span class="mi">Support ticket triage</span><span class="mi">FAQ auto-responses</span><span class="mi">Churn risk alerts</span><span class="mi">Renewal reminders</span></div>
+    </div>
+    <div class="mod" style="--c:#FB923C;--ibg:rgba(251,146,60,.1);" onclick="toggleMod(this,'Reporting & Intelligence',8,1500)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">📊</div><div class="mod-name">Reporting & Intelligence</div>
+      <div class="mod-desc">Daily briefings, KPI summaries, competitor monitoring — auto-generated and delivered to you.</div>
+      <div class="mod-items"><span class="mi">Daily business briefings</span><span class="mi">KPI dashboard generation</span><span class="mi">Competitor monitoring</span><span class="mi">Weekly performance digests</span></div>
+    </div>
+    <div class="mod" style="--c:#64748B;--ibg:rgba(100,116,139,.1);" onclick="toggleMod(this,'IT & Operations',5,1000)">
+      <div class="mod-check">✓</div>
+      <div class="mod-ico">⚙️</div><div class="mod-name">IT & Operations</div>
+      <div class="mod-desc">File organisation, licence tracking, backup monitoring, and security alerts handled quietly.</div>
+      <div class="mod-items"><span class="mi">File organisation</span><span class="mi">Software licence tracking</span><span class="mi">Backup monitoring</span><span class="mi">Security & uptime alerts</span></div>
+    </div>
+  </div>
+  <div class="calc-box reveal">
+    <div class="calc-header">
+      <h3>Your Automation Estimate</h3>
+      <button class="calc-reset" onclick="resetMods()">Reset</button>
+    </div>
+    <div class="calc-selected" id="calcChips"><span class="calc-empty">← Select modules above to calculate your ROI</span></div>
+    <div class="calc-results" id="calcResults">
+      <div class="calc-result"><div class="big" id="calcHours">—</div><div class="lbl">Hours saved / week</div></div>
+      <div class="calc-result"><div class="big" id="calcWorkflows">—</div><div class="lbl">Workflows automated</div></div>
+      <div class="calc-result"><div class="big" id="calcSaving">—</div><div class="lbl">Est. monthly value</div></div>
+      <div class="calc-result"><div class="big" id="calcPayback">—</div><div class="lbl">Est. payback period</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- HOW IT WORKS -->
+<div class="how-bg">
+  <div class="sec reveal">
+    <div class="sec-eye">How It Works</div>
+    <h2 class="sec-h">Up and running<br><span class="soft">in 4 steps.</span></h2>
+    <div class="steps">
+      <div class="step reveal reveal-delay-1"><div class="step-n">1</div><h4>Workflow Audit</h4><p>We map your current digital workflows and identify the highest-value automation opportunities across all 9 functions.</p></div>
+      <div class="step reveal reveal-delay-2"><div class="step-n">2</div><h4>Module Selection</h4><p>Together we choose which modules to activate first, prioritised by ROI and your team's biggest pain points.</p></div>
+      <div class="step reveal reveal-delay-3"><div class="step-n">3</div><h4>Secure Deployment</h4><p>We install and configure OpenClaw with NemoClaw's security guardrails on your own infrastructure. Your data stays yours.</p></div>
+      <div class="step reveal"><div class="step-n">4</div><h4>Monitor & Expand</h4><p>We monitor performance, fine-tune your automations, and progressively stack more modules as confidence grows.</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ROI -->
+<div class="sec reveal">
+  <div class="roi-box">
+    <div>
+      <div class="roi-eye">The Numbers</div>
+      <h2 class="roi-h">Real ROI.<br><span class="roi-cool">Not theory.</span></h2>
+      <p class="roi-sub">Businesses running OpenClaw automations report saving 8–15 hours per week per function. At a typical SMB loaded labour cost, that's meaningful money back every month — often within 6 months of setup.</p>
+    </div>
+    <div class="roi-nums">
+      <div class="rn"><div class="rn-big counter" data-target="50" data-suffix="%">0%</div><div class="rn-l">Digital workflows automated on average</div></div>
+      <div class="rn"><div class="rn-big counter" data-target="15" data-suffix="h+">0h+</div><div class="rn-l">Saved per week per module</div></div>
+      <div class="rn"><div class="rn-big counter" data-target="50" data-prefix="$">$0</div><div class="rn-l">Avg. monthly AI API running cost</div></div>
+      <div class="rn"><div class="rn-big">&lt;6mo</div><div class="rn-l">Typical payback period</div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- COMPARISON -->
+<div class="sec reveal">
+  <div class="sec-eye">vs Alternatives</div>
+  <h2 class="sec-h">Why Actuate AI<br><span class="soft">vs the rest.</span></h2>
+  <p class="sec-p">Not another Zapier. Not a developer hire. The only option that gives you a fully autonomous agent on your own infrastructure.</p>
+  <table class="comp-table">
+    <thead>
+      <tr><th>Feature</th><th class="hl">Actuate AI</th><th>Zapier / Make</th><th>Hire Developer</th><th>Generic AI Tools</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Fully autonomous agent (acts, not just triggers)</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td><span class="cn">✗</span></td></tr>
+      <tr><td>Your data stays on your own infrastructure</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td><span class="cn">✗</span></td></tr>
+      <tr><td>Works across WhatsApp, Slack, Email & more</td><td class="hl"><span class="cy">✓</span></td><td><span class="cp">Partial</span></td><td><span class="cy">✓</span></td><td><span class="cp">Partial</span></td></tr>
+      <tr><td>Fixed monthly cost (no per-task pricing)</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cy">✓</span></td><td><span class="cn">✗</span></td></tr>
+      <tr><td>Setup & managed for you (no tech team needed)</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cn">✗</span></td><td><span class="cp">Partial</span></td></tr>
+      <tr><td>Industry-specific pre-built playbooks</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cn">✗</span></td><td><span class="cn">✗</span></td></tr>
+      <tr><td>Enterprise security (NemoClaw / OpenShell)</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cp">Varies</span></td><td><span class="cn">✗</span></td></tr>
+      <tr><td>Ongoing optimisation & support included</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cp">Extra cost</span></td><td><span class="cn">✗</span></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<hr class="div">
+
+<!-- TESTIMONIALS -->
+<div class="sec reveal">
+  <div class="sec-eye">Social Proof</div>
+  <h2 class="sec-h">Early adopters<br><span class="soft">are seeing results.</span></h2>
+  <p class="sec-p">From medical clinics in Singapore to property agencies in Melbourne — here's what businesses like yours are saying.</p>
+  <div class="test-grid">
+    <div class="test-card reveal reveal-delay-1">
+      <span class="test-industry">🏥 Medical · SG</span>
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">We were spending 3 hours a day on appointment reminders and follow-ups. Actuate AI automated all of it in the first week. Our front desk now handles twice the patients.</div>
+      <div class="test-author"><div class="test-avatar" style="background:rgba(79,126,255,.1);">👩‍⚕️</div><div><div class="test-name">Dr. Sarah Lim</div><div class="test-role">Clinic Director · Singapore</div></div></div>
+    </div>
+    <div class="test-card reveal reveal-delay-2">
+      <span class="test-industry">🏠 Property · SG</span>
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">As a fixed-fee agency, we can't waste time on admin. Actuate AI handles all our lead follow-ups and listing updates. I've personally reclaimed 15 hours a week.</div>
+      <div class="test-author"><div class="test-avatar" style="background:rgba(123,110,246,.1);">🏡</div><div><div class="test-name">Marcus Chen</div><div class="test-role">Principal Agent · Singapore</div></div></div>
+    </div>
+    <div class="test-card reveal reveal-delay-3">
+      <span class="test-industry">💪 Fitness · AU</span>
+      <div class="test-stars">★★★★★</div>
+      <div class="test-quote">Member retention went up 22% in two months. The automated re-engagement messages catch people before they cancel. It's like having a retention manager working 24/7.</div>
+      <div class="test-author"><div class="test-avatar" style="background:rgba(0,194,168,.1);">🏋️</div><div><div class="test-name">Jake Morrison</div><div class="test-role">Studio Owner · Melbourne</div></div></div>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- PRICING -->
+<div class="sec reveal" id="pricing">
+  <div class="sec-eye">Pricing</div>
+  <h2 class="sec-h">Simple, modular<br><span class="soft">pricing.</span></h2>
+  <p class="sec-p">Start with what hurts most. Add more modules as you grow. No lock-in, no surprises.</p>
+  <div class="price-grid">
+    <div class="pc reveal reveal-delay-1">
+      <div class="pc-tier">Starter</div>
+      <div class="pc-price">$1,500<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $500 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">For small businesses wanting to automate 1–2 core functions and see results fast.</p>
+      <ul class="pc-list"><li>Up to 2 modules activated</li><li>Workflow audit included</li><li>NemoClaw secure deployment</li><li>30-day onboarding support</li><li>Monthly performance review</li><li class="no">Custom integrations</li><li class="no">Dedicated account manager</li></ul>
+      <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Get Started</button>
+    </div>
+    <div class="pc feat reveal reveal-delay-2">
+      <div class="feat-tag">Most Popular</div>
+      <div class="pc-tier">Growth</div>
+      <div class="pc-price">$4,500<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $1,500 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">For growing businesses ready to automate 4–5 functions and hit that 50% target.</p>
+      <ul class="pc-list"><li>Up to 5 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw secure deployment</li><li>60-day onboarding support</li><li>Bi-weekly performance reviews</li><li>Custom integrations (up to 3)</li><li class="no">Dedicated account manager</li></ul>
+      <button class="pbtn pbtn-accent" onclick="scrollToWaitlist()">Get Started</button>
+    </div>
+    <div class="pc reveal reveal-delay-3">
+      <div class="pc-tier">Scale</div>
+      <div class="pc-price">$10k<span class="sm"> setup</span></div>
+      <div class="pc-per">+ $3,000 / month</div>
+      <hr class="pc-hr">
+      <p class="pc-desc">For mid-market businesses automating all 9 functions with a dedicated team.</p>
+      <ul class="pc-list"><li>All 9 modules activated</li><li>Full workflow audit & roadmap</li><li>NemoClaw enterprise deployment</li><li>90-day white-glove onboarding</li><li>Weekly performance reviews</li><li>Unlimited custom integrations</li><li>Dedicated account manager</li></ul>
+      <button class="pbtn pbtn-outline" onclick="scrollToWaitlist()">Contact Sales</button>
+    </div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- FAQ -->
+<div class="sec reveal" id="faq">
+  <div class="sec-eye">FAQ</div>
+  <h2 class="sec-h">Common<br><span class="soft">questions.</span></h2>
+  <div class="faq-list">
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What exactly is OpenClaw and is it safe?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">OpenClaw is the fastest-growing open-source AI agent in history — crossing 250,000 GitHub stars in 60 days. Unlike chatbots that just talk, it actually acts: sending emails, updating CRMs, running reports, and managing workflows. We deploy it using NVIDIA NemoClaw, which adds enterprise-grade security sandboxing so your data never leaves your infrastructure.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do I need a technical team to use Actuate AI?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Not at all. That's the whole point of Actuate AI. We handle everything — setup, configuration, integrations, and ongoing maintenance. You just tell us what's painful and we automate it. Most clients have zero technical involvement after the initial audit call.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Where does my data live? Who can see it?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Your data lives on your own infrastructure — your server, your cloud account. Actuate AI never has access to your business data. NemoClaw's OpenShell runtime enforces strict sandboxing so the agent can only access what you explicitly permit.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">How long does setup actually take?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">The first module is typically live within 5–7 business days of your kickoff call. Full deployment of all selected modules takes 2–4 weeks depending on the complexity of your existing tools. We run parallel testing before anything goes live so there's no disruption to your operations.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What if the AI makes a mistake or sends the wrong thing?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Every high-stakes action — sending emails, posting publicly, financial transactions — has a human approval gate by default. You can set the autonomy level for each workflow, from fully supervised to fully autonomous. We recommend starting supervised and expanding as confidence grows.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">Do you work with businesses in both Singapore and Australia?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">Yes — we're currently focused on Singapore and Australia, with local knowledge of both markets. We understand the tools common to each (PropertyGuru vs Domain, GHL, WhatsApp Business API) and build integrations accordingly.</div></div></div>
+    <div class="faq-item"><button class="faq-q" onclick="toggleFaq(this)">What tools does Actuate AI integrate with?<span class="faq-icon">+</span></button><div class="faq-a"><div class="faq-a-inner">We integrate with virtually any tool that has an API — GoHighLevel, HubSpot, Salesforce, Gmail, Outlook, WhatsApp Business API, Slack, Notion, Google Workspace, Xero, QuickBooks, and more. If you're using it, we can almost certainly connect to it.</div></div></div>
+  </div>
+</div>
+
+<hr class="div">
+
+<!-- WAITLIST -->
+<div class="waitlist-wrap" id="waitlist">
+  <div class="waitlist-inner reveal">
+    <div class="market-badges"><span class="market-badge">🇸🇬 Singapore</span><span class="market-badge">🇦🇺 Australia</span></div>
+    <div class="sec-eye" style="justify-content:center;margin-bottom:14px;">Limited Early Access</div>
+    <h2>Your business runs 24/7.<br><span class="grad">Shouldn't your<br>workflows too?</span></h2>
+    <p>Join the waitlist for early access pricing and a free workflow audit worth $500.</p>
+    <div class="waitlist-form" id="waitlistForm">
+      <input type="email" class="waitlist-input" id="emailInput" placeholder="your@email.com">
+      <button class="waitlist-btn" onclick="submitWaitlist()">Join Waitlist →</button>
+    </div>
+    <div class="waitlist-success" id="waitlistSuccess">You're on the list! We'll be in touch within 24 hours.</div>
+    <p class="fn">No commitment required · Free workflow audit included · Up and running in 30 days</p>
+  </div>
+</div>
+
+<footer>
+  <a href="#" class="logo" style="font-size:16px;"><div class="logo-mark" style="width:26px;height:26px;font-size:13px;">🦞</div>Actuate<span class="logo-dot"> AI</span></a>
+  <p>© 2026 Actuate AI · Powered by OpenClaw + NemoClaw · Singapore & Australia</p>
+  <p>DRAFT v0.4 · Kenneth, Leadly</p>
+</footer>
+
+<script>
+function toggleMobile(){document.getElementById('mobileMenu').classList.toggle('open');document.getElementById('hamburger').classList.toggle('open');}
+function closeMobile(){document.getElementById('mobileMenu').classList.remove('open');document.getElementById('hamburger').classList.remove('open');}
+
+// SCROLL REVEAL
+const obs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('visible');});},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// COUNTERS
+function animateCounter(el){
+  const target=parseInt(el.dataset.target),prefix=el.dataset.prefix||'',suffix=el.dataset.suffix||'';
+  let cur=0;const step=target/60;
+  const t=setInterval(()=>{cur=Math.min(cur+step,target);el.textContent=prefix+Math.floor(cur)+suffix;if(cur>=target)clearInterval(t);},25);
+}
+const cObs=new IntersectionObserver(e=>{e.forEach(x=>{if(x.isIntersecting){x.target.querySelectorAll('.counter').forEach(animateCounter);cObs.unobserve(x.target);}});},{threshold:.3});
+document.querySelectorAll('.roi-box').forEach(el=>cObs.observe(el));
+
+// INDUSTRY TABS
+function showIndustry(id,btn){
+  document.querySelectorAll('.ind-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ind-panel').forEach(p=>p.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('ind-'+id).classList.add('active');
+}
+
+// MODULE CALCULATOR
+let selectedMods=[];
+function toggleMod(el,name,hours,saving){
+  const idx=selectedMods.findIndex(m=>m.name===name);
+  if(idx>-1){selectedMods.splice(idx,1);el.classList.remove('selected');}
+  else{selectedMods.push({name,hours,saving});el.classList.add('selected');}
+  updateCalc();
+}
+function resetMods(){selectedMods=[];document.querySelectorAll('.mod').forEach(m=>m.classList.remove('selected'));updateCalc();}
+function updateCalc(){
+  const chips=document.getElementById('calcChips');
+  if(selectedMods.length===0){chips.innerHTML='<span class="calc-empty">← Select modules above to calculate your ROI</span>';['calcHours','calcWorkflows','calcSaving','calcPayback'].forEach(id=>document.getElementById(id).textContent='—');return;}
+  chips.innerHTML=selectedMods.map(m=>`<span class="calc-chip">${m.name}<button onclick="removeChip('${m.name}')">×</button></span>`).join('');
+  const totalHours=selectedMods.reduce((s,m)=>s+m.hours,0);
+  const monthlyValue=totalHours*4*65;
+  const setupCost=selectedMods.length<=2?1500:selectedMods.length<=5?4500:10000;
+  const monthlyFee=selectedMods.length<=2?500:selectedMods.length<=5?1500:3000;
+  const payback=Math.ceil(setupCost/(monthlyValue-monthlyFee));
+  document.getElementById('calcHours').innerHTML=`${totalHours}<span class="a">h</span>`;
+  document.getElementById('calcWorkflows').innerHTML=`${selectedMods.length*5}<span class="a">+</span>`;
+  document.getElementById('calcSaving').innerHTML=`$${(monthlyValue/1000).toFixed(1)}<span class="a">k</span>`;
+  document.getElementById('calcPayback').textContent=payback<=0?'< 1 mo':`${payback} mo`;
+}
+function removeChip(name){
+  document.querySelectorAll('.mod').forEach(m=>{if(m.querySelector('.mod-name')&&m.querySelector('.mod-name').textContent===name)m.classList.remove('selected');});
+  selectedMods=selectedMods.filter(m=>m.name!==name);updateCalc();
+}
+
+// FAQ
+function toggleFaq(btn){
+  const a=btn.nextElementSibling,isOpen=a.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(x=>x.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(x=>x.classList.remove('open'));
+  if(!isOpen){a.classList.add('open');btn.classList.add('open');}
+}
+
+// WAITLIST
+function submitWaitlist(){
+  const email=document.getElementById('emailInput').value;
+  if(!email||!email.includes('@')){document.getElementById('emailInput').style.borderColor='#FF5050';return;}
+  document.getElementById('waitlistForm').style.display='none';
+  document.getElementById('waitlistSuccess').style.display='flex';
+}
+function scrollToWaitlist(){document.getElementById('waitlist').scrollIntoView({behavior:'smooth'});}
+</script>
+</body>
+</html>
