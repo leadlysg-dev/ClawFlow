@@ -253,32 +253,75 @@ hr.div{border:none;border-top:1px solid var(--border);max-width:1100px;margin:0 
 footer{border-top:1px solid var(--border);padding:24px 48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
 footer p{font-size:12px;color:var(--text-soft);}
 
-/* RESPONSIVE */
+/* RESPONSIVE — TABLET */
 @media(max-width:900px){
   nav{padding:14px 20px;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  .hero,.sec,.waitlist-inner{padding-left:20px;padding-right:20px;}
-  .hero{padding-top:110px;}
-  .hero h1{font-size:44px;letter-spacing:-2px;}
-  .mod-grid,.price-grid,.test-grid{grid-template-columns:1fr 1fr;}
-  .prob-grid,.ind-panel{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr 1fr;gap:28px;}
-  .step{border-right:none;padding-right:0;margin-right:0;}
-  .stats-row{flex-direction:column;}
-  .stat{border-right:none;border-bottom:1px solid var(--border);}
-  .stat:last-child{border-bottom:none;}
-  .roi-box{grid-template-columns:1fr;padding:30px 22px;}
+  .hero{padding:100px 20px 60px;}
+  .sec{padding:64px 20px;}
+  .waitlist-inner{padding:64px 20px;}
+  .hero h1{font-size:42px;letter-spacing:-1.5px;}
+  .hero-sub{font-size:16px;}
+  .stats-row{display:grid;grid-template-columns:1fr 1fr;}
+  .stat{border-right:none;border-bottom:1px solid var(--border);padding:18px 20px;}
+  .stat:nth-child(odd){border-right:1px solid var(--border);}
+  .stat:nth-last-child(-n+2){border-bottom:none;}
+  .stat-n{font-size:26px;}
+  .prob-grid{grid-template-columns:1fr;}
+  .ind-panel{grid-template-columns:1fr;}
+  .mod-grid{grid-template-columns:1fr 1fr;}
   .mod-header{flex-direction:column;align-items:flex-start;}
   .mod-note{text-align:left;max-width:100%;}
   .calc-results{grid-template-columns:1fr 1fr;}
-  footer{flex-direction:column;text-align:center;}
-}
-@media(max-width:580px){
-  .mod-grid,.price-grid,.test-grid{grid-template-columns:1fr;}
-  .steps{grid-template-columns:1fr;}
-  .hero h1{font-size:38px;}
+  .steps{grid-template-columns:1fr 1fr;gap:24px;}
+  .step{border-right:none;padding-right:0;margin-right:0;border-bottom:1px solid var(--border);padding-bottom:24px;}
+  .step:nth-last-child(-n+2){border-bottom:none;}
+  .roi-box{grid-template-columns:1fr;padding:30px 22px;gap:28px;}
   .roi-nums{grid-template-columns:1fr 1fr;}
+  .roi-h{font-size:28px;}
+  .test-grid{grid-template-columns:1fr;}
+  .price-grid{grid-template-columns:1fr;}
+  .comp-table-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:var(--r);border:1px solid var(--border);}
+  .comp-table{border:none;border-radius:0;min-width:600px;}
+  footer{flex-direction:column;text-align:center;padding:20px;}
+  .sec-h{font-size:30px;letter-spacing:-1px;}
+  .waitlist-inner h2{font-size:32px;letter-spacing:-1.5px;}
+  .hero-cta{gap:10px;}
+  .btn-accent,.btn-ghost{font-size:14px;padding:12px 22px;}
+}
+
+/* RESPONSIVE — MOBILE */
+@media(max-width:580px){
+  .hero h1{font-size:36px;letter-spacing:-1px;}
+  .hero-sub{font-size:15px;max-width:100%;}
+  .hero-cta{flex-direction:column;align-items:flex-start;}
+  .btn-accent,.btn-ghost{width:100%;text-align:center;justify-content:center;}
+  .eyebrow-pill{font-size:11px;padding:6px 12px;}
+  .stats-row{grid-template-columns:1fr 1fr;}
+  .mod-grid{grid-template-columns:1fr;}
+  .calc-results{grid-template-columns:1fr 1fr;}
+  .calc-result .big{font-size:22px;}
+  .steps{grid-template-columns:1fr;}
+  .step{border-bottom:1px solid var(--border);padding-bottom:20px;}
+  .step:last-child{border-bottom:none;}
+  .roi-nums{grid-template-columns:1fr 1fr;}
+  .rn-big{font-size:26px;}
+  .ind-tabs{gap:6px;}
+  .ind-tab{font-size:12px;padding:7px 12px;}
+  .price-grid{grid-template-columns:1fr;}
+  .pc{padding:24px 20px;}
+  .faq-q{font-size:13.5px;padding:16px 18px;}
+  .faq-a-inner{padding:0 18px 16px;font-size:13.5px;}
+  .waitlist-inner h2{font-size:28px;}
+  .waitlist-form{flex-direction:column;}
+  .waitlist-input,.waitlist-btn{width:100%;min-width:unset;}
+  .market-badges{gap:6px;}
+  footer p{font-size:11px;}
+  .test-card{padding:20px;}
+  .prob-card{padding:22px;}
+  .sec-h{font-size:28px;}
+  hr.div{margin:0 20px;}
 }
 </style>
 </head>
@@ -513,7 +556,7 @@ footer p{font-size:12px;color:var(--text-soft);}
   <div class="sec-eye">vs Alternatives</div>
   <h2 class="sec-h">Why Actuate AI<br><span class="soft">vs the rest.</span></h2>
   <p class="sec-p">Not another Zapier. Not a developer hire. The only option that gives you a fully autonomous agent on your own infrastructure.</p>
-  <table class="comp-table">
+  <div class="comp-table-wrap"><table class="comp-table">
     <thead>
       <tr><th>Feature</th><th class="hl">Actuate AI</th><th>Zapier / Make</th><th>Hire Developer</th><th>Generic AI Tools</th></tr>
     </thead>
@@ -527,7 +570,7 @@ footer p{font-size:12px;color:var(--text-soft);}
       <tr><td>Enterprise security (NemoClaw / OpenShell)</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cp">Varies</span></td><td><span class="cn">✗</span></td></tr>
       <tr><td>Ongoing optimisation & support included</td><td class="hl"><span class="cy">✓</span></td><td><span class="cn">✗</span></td><td><span class="cp">Extra cost</span></td><td><span class="cn">✗</span></td></tr>
     </tbody>
-  </table>
+  </table></div>
 </div>
 
 <hr class="div">
