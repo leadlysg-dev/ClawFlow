@@ -28,8 +28,8 @@ h1,h2,h3,.serif{font-family:'Playfair Display',serif;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:0 48px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(248,248,246,.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
-.logo{font-family:'Syne',sans-serif;font-weight:800;font-size:22px;letter-spacing:-0.3px;color:var(--text);text-decoration:none;line-height:1;display:flex;align-items:center;gap:0;}
-.logo-ai{color:var(--accent);}
+.logo{font-family:'Helvetica Neue','Arial Black',Arial,sans-serif;font-weight:900;font-size:22px;letter-spacing:-0.5px;color:var(--text);text-decoration:none;line-height:normal;display:flex;align-items:center;gap:0;overflow:visible;}
+.logo-ai{color:var(--accent);margin-left:3px;}
 .nav-links{display:flex;align-items:center;gap:6px;}
 .nav-links a{font-size:14px;color:var(--text-mid);text-decoration:none;transition:color .2s;font-weight:400;padding:6px 14px;border-radius:6px;}
 .nav-links a:hover{color:var(--text);background:rgba(0,0,0,.04);}
@@ -175,6 +175,13 @@ hr.div{border:none;border-top:1px solid var(--border);max-width:1000px;margin:0 
 .calc-footnote{font-size:12px;color:var(--text-soft);font-weight:300;}
 .calc-footnote a{color:var(--accent);text-decoration:none;}
 .calc-footnote a:hover{text-decoration:underline;}
+.calc-mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:16px;}
+.calc-mini-btn{background:var(--bg);border:1.5px solid var(--border);border-radius:8px;padding:9px 10px;font-family:'Inter',sans-serif;font-size:12px;font-weight:500;color:var(--text-mid);cursor:pointer;transition:all .2s;text-align:left;display:flex;align-items:center;gap:7px;line-height:1.3;}
+.calc-mini-btn:hover{border-color:var(--border-med);color:var(--text);background:var(--white);}
+.calc-mini-btn.active{border-color:var(--accent);color:var(--accent);background:rgba(42,92,230,.06);}
+.calc-mini-btn .mini-ico{font-size:14px;flex-shrink:0;}
+.calc-mini-btn .mini-check{width:14px;height:14px;border-radius:50%;background:var(--accent);display:none;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:700;margin-left:auto;flex-shrink:0;}
+.calc-mini-btn.active .mini-check{display:flex;}
 
 /* STICKY CALC — mobile */
 .sticky-calc{display:none;position:fixed;bottom:0;left:0;right:0;z-index:300;background:rgba(255,255,255,.97);backdrop-filter:blur(20px);border-top:1px solid var(--border);transform:translateY(100%);transition:transform .35s cubic-bezier(.4,0,.2,1);box-shadow:0 -4px 24px rgba(0,0,0,.1);}
@@ -392,8 +399,8 @@ footer p{font-size:12px;color:var(--text-soft);}
 <!-- HERO -->
 <div class="hero">
   <div class="hero-eyebrow"><div class="live-dot"></div>Powered by OpenClaw + NemoClaw · Singapore & Australia</div>
-  <h1>The AI Agent for<br><em>Business Operations</em></h1>
-  <p class="hero-sub">Actuate AI automates 50% of your digital workflows in 30 days — so your team focuses on growth, not admin.</p>
+  <h1>The AI agent that<br><em>runs your business.</em></h1>
+  <p class="hero-sub">Actuate AI deploys an autonomous agent across your entire operation — so your team focuses on growth, not admin.</p>
   <div class="hero-cta">
     <a href="#waitlist" class="btn-primary">Get Early Access <span>→</span></a>
     <a href="#modules" class="btn-secondary">See what we automate</a>
@@ -453,9 +460,9 @@ footer p{font-size:12px;color:var(--text-soft);}
 <!-- STATS -->
 <div class="stats-bar reveal">
   <div class="stats-inner">
-    <div class="stat"><div class="stat-n">50<em>%</em></div><div class="stat-l">Workflows automated</div></div>
-    <div class="stat"><div class="stat-n">30<em>d</em></div><div class="stat-l">To full deployment</div></div>
-    <div class="stat"><div class="stat-n"><em>9</em></div><div class="stat-l">Business functions covered</div></div>
+    <div class="stat"><div class="stat-n">200<em>h</em></div><div class="stat-l">Lost per employee yearly to automatable work</div></div>
+    <div class="stat"><div class="stat-n">68<em>%</em></div><div class="stat-l">Productivity gain after automation deployment</div></div>
+    <div class="stat"><div class="stat-n">45<em>%</em></div><div class="stat-l">Operational cost reduction within 12 months</div></div>
     <div class="stat"><div class="stat-n">$50<span style="font-size:18px;color:var(--text-soft)">/mo</span></div><div class="stat-l">Avg. AI running costs</div></div>
   </div>
 </div>
@@ -465,13 +472,13 @@ footer p{font-size:12px;color:var(--text-soft);}
 <!-- PROBLEM -->
 <div class="sec reveal">
   <div class="sec-eye">The Problem</div>
-  <h2 class="sec-h">Your team is drowning<br><em>in busywork.</em></h2>
-  <p class="sec-p">The average SMB employee spends 60% of their day on repetitive digital tasks. That's your growth budget going nowhere.</p>
+  <h2 class="sec-h">Your business is losing ground<br><em>to manual operations.</em></h2>
+  <p class="sec-p">Every process that depends on a human doing it correctly, every time, is a liability. Here's what that actually costs.</p>
   <div class="prob-grid">
-    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>Inbox overload</h4><p>Hours lost reading, sorting, and responding to emails that follow the same patterns every single week.</p></div>
-    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Leads falling through cracks</h4><p>Follow-ups missed, deals stalled, pipelines unmaintained — not because no one cares, but because there's no time.</p></div>
-    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>Reporting done manually</h4><p>Someone builds the same spreadsheet every Friday. And the Friday before that. And the one before that.</p></div>
-    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Inconsistent onboarding</h4><p>Every new client or employee gets a different experience depending on who happens to be handling it that week.</p></div>
+    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>Your best people are doing work a computer should</h4><p>45% of work activities are automatable today. Yet most SMBs have skilled, expensive staff chasing invoices, sorting emails, and updating spreadsheets — every single week.</p></div>
+    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Revenue is quietly walking out the door</h4><p>Missed follow-ups, slow responses, and unpredicted churn cost the average SMB 3–5% of annual revenue. At $1M turnover, that's up to $50k gone — with no bad decision ever made.</p></div>
+    <div class="prob-card reveal reveal-1"><div class="prob-x">✕</div><h4>You are the single point of failure</h4><p>When critical knowledge lives in one person's head — how to handle a complaint, when to chase a client — your business can't scale, can't take holidays, and can't survive key-person risk.</p></div>
+    <div class="prob-card reveal reveal-2"><div class="prob-x">✕</div><h4>Your competitors are already automating</h4><p>68% of SMBs that deployed AI automation report significant productivity gains. The businesses that move now aren't just saving time — they're building a cost advantage that becomes impossible to close.</p></div>
   </div>
 </div>
 
@@ -482,7 +489,7 @@ footer p{font-size:12px;color:var(--text-soft);}
   <div class="sec reveal">
     <div class="sec-eye">Industries</div>
     <h2 class="sec-h">Built for your <em>industry.</em></h2>
-    <p class="sec-p">Pre-built automation playbooks for Singapore and Australian SMBs.</p>
+    <p class="sec-p">Pre-built playbooks for Singapore and Australian SMBs — going far beyond reminders and scheduling.</p>
     <div class="ind-tabs">
       <button class="ind-tab active" onclick="showIndustry('medical',this)">🏥 Medical & Health</button>
       <button class="ind-tab" onclick="showIndustry('fitness',this)">💪 Fitness & Wellness</button>
@@ -492,34 +499,34 @@ footer p{font-size:12px;color:var(--text-soft);}
     </div>
     <div class="ind-panels">
       <div class="ind-panel active" id="ind-medical">
-        <div class="ind-card"><h4>Patient Communications</h4><p>Automate appointment reminders, follow-ups after consultations, and recall campaigns for annual check-ups.</p><div class="ind-tags"><span class="ind-tag">Appointment reminders</span><span class="ind-tag">Post-consult follow-ups</span><span class="ind-tag">Recall campaigns</span></div></div>
-        <div class="ind-card"><h4>Admin & Reporting</h4><p>Daily patient briefings, insurance claim tracking, staff scheduling nudges, and weekly practice summaries.</p><div class="ind-tags"><span class="ind-tag">Daily briefings</span><span class="ind-tag">Claim tracking</span><span class="ind-tag">Performance reports</span></div></div>
-        <div class="ind-card"><h4>New Patient Onboarding</h4><p>When a new patient registers, automatically send welcome info, pre-appointment forms, and clinic details.</p><div class="ind-tags"><span class="ind-tag">Welcome sequences</span><span class="ind-tag">Form collection</span><span class="ind-tag">Clinic info</span></div></div>
-        <div class="ind-card"><h4>Reputation Management</h4><p>Monitor Google reviews, flag complaints, and prompt satisfied patients to leave reviews after visits.</p><div class="ind-tags"><span class="ind-tag">Review monitoring</span><span class="ind-tag">Review prompts</span><span class="ind-tag">Complaint alerts</span></div></div>
+        <div class="ind-card"><h4>Predictive Patient Retention</h4><p>The agent monitors visit patterns, treatment completion rates, and communication gaps to identify patients at risk of disengaging — before they do. It auto-triggers personalised re-engagement campaigns calibrated by condition, treatment stage, and last interaction.</p><div class="ind-tags"><span class="ind-tag">Churn prediction</span><span class="ind-tag">Re-engagement triggers</span><span class="ind-tag">Treatment adherence tracking</span></div></div>
+        <div class="ind-card"><h4>Autonomous Claims & Billing</h4><p>Monitors claim statuses in real time, follows up with payers at optimal intervals, flags billing anomalies, and drafts dispute letters for rejections — reducing DSO without a billing team.</p><div class="ind-tags"><span class="ind-tag">Claims tracking</span><span class="ind-tag">DSO reduction</span><span class="ind-tag">Dispute drafting</span></div></div>
+        <div class="ind-card"><h4>Daily Clinical Briefings</h4><p>Before each day starts, the agent synthesises patient notes, upcoming appointments, and outstanding results into a concise briefing — so practitioners walk in knowing exactly what needs attention.</p><div class="ind-tags"><span class="ind-tag">Pre-day briefings</span><span class="ind-tag">Results monitoring</span><span class="ind-tag">Priority flagging</span></div></div>
+        <div class="ind-card"><h4>Reputation & Referral Engine</h4><p>Monitors reviews and sentiment, identifies your top referring GPs, and automates relationship-nurturing cadences. Flags reputation risks within minutes and drafts response strategies before damage spreads.</p><div class="ind-tags"><span class="ind-tag">Sentiment monitoring</span><span class="ind-tag">Referral nurturing</span><span class="ind-tag">Risk response drafting</span></div></div>
       </div>
       <div class="ind-panel" id="ind-fitness">
-        <div class="ind-card"><h4>Member Retention</h4><p>Detect members who haven't visited in 7+ days and automatically send re-engagement messages with personalised incentives.</p><div class="ind-tags"><span class="ind-tag">Churn detection</span><span class="ind-tag">Re-engagement flows</span><span class="ind-tag">Incentive messages</span></div></div>
-        <div class="ind-card"><h4>Class & Booking Management</h4><p>Automated class reminders, waitlist notifications, and post-class follow-ups asking for feedback.</p><div class="ind-tags"><span class="ind-tag">Class reminders</span><span class="ind-tag">Waitlist alerts</span><span class="ind-tag">Feedback collection</span></div></div>
-        <div class="ind-card"><h4>PT & Coaching Sales</h4><p>Follow up with trial session members, send package recommendations, and handle objections via WhatsApp.</p><div class="ind-tags"><span class="ind-tag">Trial follow-ups</span><span class="ind-tag">Package recommendations</span><span class="ind-tag">Objection handling</span></div></div>
-        <div class="ind-card"><h4>Social & Content</h4><p>Schedule transformation posts, class highlights, and coach spotlights across all platforms on a consistent cadence.</p><div class="ind-tags"><span class="ind-tag">Content scheduling</span><span class="ind-tag">Transformation posts</span><span class="ind-tag">Engagement monitoring</span></div></div>
+        <div class="ind-card"><h4>Revenue-Per-Member Optimisation</h4><p>Analyses each member's attendance, spend, and engagement — then presents the right upsell at the right moment. PT packages to high-attenders, freeze offers to at-risk members. All timed, all personalised.</p><div class="ind-tags"><span class="ind-tag">Upsell sequencing</span><span class="ind-tag">LTV optimisation</span><span class="ind-tag">Spend pattern analysis</span></div></div>
+        <div class="ind-card"><h4>Predictive Churn Prevention</h4><p>Identifies members likely to cancel 2–3 weeks before it happens — based on visit drop-off, class skips, and engagement signals — and deploys targeted win-back flows without any manual intervention.</p><div class="ind-tags"><span class="ind-tag">Early churn signals</span><span class="ind-tag">Coach-attributed outreach</span><span class="ind-tag">Loyalty triggers</span></div></div>
+        <div class="ind-card"><h4>Schedule & Capacity Intelligence</h4><p>Monitors class fill rates, predicts low-attendance sessions, and automatically runs targeted promotions to fill gaps — acting like an operations manager who never sleeps.</p><div class="ind-tags"><span class="ind-tag">Fill rate monitoring</span><span class="ind-tag">Demand forecasting</span><span class="ind-tag">Promo deployment</span></div></div>
+        <div class="ind-card"><h4>Automated Social Proof Engine</h4><p>Detects transformation milestones from check-in data, requests permission, and drafts platform-ready social posts — complete with copy and hashtags. Consistent content without a social media manager.</p><div class="ind-tags"><span class="ind-tag">Milestone detection</span><span class="ind-tag">Permission-based posts</span><span class="ind-tag">Multi-platform formatting</span></div></div>
       </div>
       <div class="ind-panel" id="ind-property">
-        <div class="ind-card"><h4>Lead Nurturing</h4><p>Every inquiry gets an instant response, followed by a tailored property match sequence — even at 2am.</p><div class="ind-tags"><span class="ind-tag">Instant responses</span><span class="ind-tag">Property matching</span><span class="ind-tag">Follow-up sequences</span></div></div>
-        <div class="ind-card"><h4>Listing Management</h4><p>Automatically syndicate new listings, generate descriptions, and notify matched buyers when a property goes live.</p><div class="ind-tags"><span class="ind-tag">Listing syndication</span><span class="ind-tag">Description generation</span><span class="ind-tag">Buyer alerts</span></div></div>
-        <div class="ind-card"><h4>Transaction Admin</h4><p>Milestone reminders, document collection nudges, and stakeholder updates throughout the transaction.</p><div class="ind-tags"><span class="ind-tag">Milestone reminders</span><span class="ind-tag">Document chasing</span><span class="ind-tag">Stakeholder updates</span></div></div>
-        <div class="ind-card"><h4>Market Intelligence</h4><p>Daily briefings on new launches, price movements, and competitor listings — delivered every morning.</p><div class="ind-tags"><span class="ind-tag">Market monitoring</span><span class="ind-tag">Daily briefings</span><span class="ind-tag">Competitor tracking</span></div></div>
+        <div class="ind-card"><h4>Intelligent Lead Qualification</h4><p>Every enquiry is scored against buyer profile, budget signals, and urgency. High-intent leads are escalated immediately. Nurture leads enter tailored sequences. No agent time wasted, no hot lead left cold.</p><div class="ind-tags"><span class="ind-tag">Intent scoring</span><span class="ind-tag">Instant escalation</span><span class="ind-tag">Automated nurture tracks</span></div></div>
+        <div class="ind-card"><h4>Market Listing Intelligence</h4><p>Monitors competitor listings, price reductions, and days-on-market across your target districts. When a comparable drops in price or a development launches, you're briefed and buyer alerts are drafted instantly.</p><div class="ind-tags"><span class="ind-tag">Competitor monitoring</span><span class="ind-tag">Price movement alerts</span><span class="ind-tag">Buyer match notifications</span></div></div>
+        <div class="ind-card"><h4>Transaction Orchestration</h4><p>From OTP to keys — the agent manages every milestone, chases every document, and keeps buyers, sellers, lawyers, and bankers synchronised. Flags delays before they become defaults.</p><div class="ind-tags"><span class="ind-tag">Milestone tracking</span><span class="ind-tag">Legal timeline monitoring</span><span class="ind-tag">Multi-party coordination</span></div></div>
+        <div class="ind-card"><h4>Post-Sale Referral System</h4><p>After every close, the agent begins a long-term programme — anniversary check-ins, market updates, rental yield reports — and surfaces referral requests at exactly the right moment. Past clients become your best pipeline.</p><div class="ind-tags"><span class="ind-tag">Long-term nurture</span><span class="ind-tag">Market value updates</span><span class="ind-tag">Referral sequencing</span></div></div>
       </div>
       <div class="ind-panel" id="ind-retail">
-        <div class="ind-card"><h4>Customer Re-engagement</h4><p>Identify customers who haven't purchased in 30+ days and automatically send personalised offers.</p><div class="ind-tags"><span class="ind-tag">Win-back campaigns</span><span class="ind-tag">Personalised offers</span><span class="ind-tag">Purchase triggers</span></div></div>
-        <div class="ind-card"><h4>Inventory & Ops</h4><p>Low stock alerts, supplier follow-ups, and daily sales summaries delivered to your phone each evening.</p><div class="ind-tags"><span class="ind-tag">Stock alerts</span><span class="ind-tag">Supplier nudges</span><span class="ind-tag">Sales summaries</span></div></div>
-        <div class="ind-card"><h4>Review & Reputation</h4><p>Post-purchase review requests, Google Business monitoring, and flagging of negative feedback for same-day response.</p><div class="ind-tags"><span class="ind-tag">Review requests</span><span class="ind-tag">Feedback monitoring</span><span class="ind-tag">Negative alerts</span></div></div>
-        <div class="ind-card"><h4>Social Commerce</h4><p>Automated product posts, promotional campaigns, and DM responses for common inquiries.</p><div class="ind-tags"><span class="ind-tag">Product posts</span><span class="ind-tag">DM auto-replies</span><span class="ind-tag">Promo campaigns</span></div></div>
+        <div class="ind-card"><h4>Inventory & Demand Intelligence</h4><p>Monitors stock velocity, predicts stockouts before they happen, and auto-raises purchase orders within approved thresholds. Flags underperforming products and suggests promotional triggers before margins are hit.</p><div class="ind-tags"><span class="ind-tag">Stockout prediction</span><span class="ind-tag">Auto purchase orders</span><span class="ind-tag">Margin impact analysis</span></div></div>
+        <div class="ind-card"><h4>Personalised Customer Reactivation</h4><p>Segments dormant customers by spend tier and purchase history — then deploys campaigns that reference what they actually bought. Not "we miss you." Something they'll actually act on.</p><div class="ind-tags"><span class="ind-tag">Behavioural segmentation</span><span class="ind-tag">Purchase history triggers</span><span class="ind-tag">Dynamic offer generation</span></div></div>
+        <div class="ind-card"><h4>Omnichannel Operations Hub</h4><p>Syncs orders, inventory, and customer data across your store, Shopify, Lazada, Shopee, and social channels in real time. When anything changes, every channel knows — instantly.</p><div class="ind-tags"><span class="ind-tag">Real-time sync</span><span class="ind-tag">Cross-channel context</span><span class="ind-tag">Unified order management</span></div></div>
+        <div class="ind-card"><h4>Dynamic Pricing Intelligence</h4><p>Monitors competitor pricing and demand signals, auto-deploys time-sensitive promotions, and identifies slow-moving SKUs early — triggering markdown strategies before they become dead stock write-offs.</p><div class="ind-tags"><span class="ind-tag">Competitor price tracking</span><span class="ind-tag">Dynamic promotions</span><span class="ind-tag">Dead stock prevention</span></div></div>
       </div>
       <div class="ind-panel" id="ind-professional">
-        <div class="ind-card"><h4>Client Onboarding</h4><p>New client signed? Automatically trigger welcome emails, collect documents, and schedule kickoff calls.</p><div class="ind-tags"><span class="ind-tag">Welcome sequences</span><span class="ind-tag">Document collection</span><span class="ind-tag">Kickoff scheduling</span></div></div>
-        <div class="ind-card"><h4>Billing & Collections</h4><p>Invoice generation, payment reminders at 7, 14, and 30 days overdue, and automatic escalation when unpaid.</p><div class="ind-tags"><span class="ind-tag">Auto-invoicing</span><span class="ind-tag">Payment reminders</span><span class="ind-tag">Escalation workflows</span></div></div>
-        <div class="ind-card"><h4>Proposal & Pitching</h4><p>Turn a brief into a polished proposal draft in minutes. Follow up automatically 3 and 7 days after sending.</p><div class="ind-tags"><span class="ind-tag">Proposal drafting</span><span class="ind-tag">Follow-up sequences</span><span class="ind-tag">Prospect tracking</span></div></div>
-        <div class="ind-card"><h4>Knowledge & Reporting</h4><p>Weekly client performance reports, meeting transcripts turned into action items, self-building knowledge base.</p><div class="ind-tags"><span class="ind-tag">Performance reports</span><span class="ind-tag">Meeting summaries</span><span class="ind-tag">Knowledge base</span></div></div>
+        <div class="ind-card"><h4>Revenue Operations</h4><p>Monitors every client engagement for upsell signals — scope creep that should be a change order, a renewal due in 90 days, a question that reveals an adjacent need. Surfaces each with a drafted proposal.</p><div class="ind-tags"><span class="ind-tag">Upsell signal detection</span><span class="ind-tag">Change order drafting</span><span class="ind-tag">Renewal pipeline management</span></div></div>
+        <div class="ind-card"><h4>Intelligent Collections & Cash Flow</h4><p>Monitors cash flow forecasts, flags concentration risk, and escalates aging receivables through calibrated sequences — friendly, firm, then formal — before they become bad debt.</p><div class="ind-tags"><span class="ind-tag">Cash flow forecasting</span><span class="ind-tag">Concentration risk alerts</span><span class="ind-tag">Escalation sequencing</span></div></div>
+        <div class="ind-card"><h4>Living Knowledge Base</h4><p>Every call, email, and deliverable feeds into a searchable knowledge base that builds itself. New staff onboard in hours. When a client asks "what did we decide?" — the answer is there in seconds.</p><div class="ind-tags"><span class="ind-tag">Auto-ingestion</span><span class="ind-tag">Semantic search</span><span class="ind-tag">Onboarding acceleration</span></div></div>
+        <div class="ind-card"><h4>Competitive Intelligence</h4><p>Monitors competitor websites, job postings, and press activity to detect strategic shifts early. Delivers weekly briefings so you walk into every client meeting knowing more about their market than they do.</p><div class="ind-tags"><span class="ind-tag">Competitor monitoring</span><span class="ind-tag">Strategic signal detection</span><span class="ind-tag">Weekly intel briefings</span></div></div>
       </div>
     </div>
   </div>
@@ -534,18 +541,18 @@ footer p{font-size:12px;color:var(--text-soft);}
       <div class="sec-eye">The Modules</div>
       <h2 class="sec-h">9 modules. <em>One agent.</em></h2>
     </div>
-    <p class="mod-note">Click modules to build your plan and see your estimated ROI below.</p>
+    <p class="mod-note">Click modules to build your plan and see your ROI below.</p>
   </div>
   <div class="mod-grid">
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Communications',8,1500)"><span class="mod-badge">High ROI</span><div class="mod-check">✓</div><div class="mod-ico">📬</div><div class="mod-name">Communications</div><div class="mod-desc">AI handles your inbox, WhatsApp, and Slack — triage, draft, route, and follow up automatically.</div><div class="mod-items"><span class="mi">Email triage & priority sorting</span><span class="mi">Auto-draft responses</span><span class="mi">WhatsApp business replies</span><span class="mi">Slack message routing</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Sales & CRM',12,2000)"><span class="mod-badge">Popular</span><div class="mod-check">✓</div><div class="mod-ico">📣</div><div class="mod-name">Sales & CRM</div><div class="mod-desc">Leads captured, scored, followed up, and pipeline updated — without your team lifting a finger.</div><div class="mod-items"><span class="mi">Lead capture & scoring</span><span class="mi">Follow-up sequences</span><span class="mi">Pipeline status updates</span><span class="mi">Proposal sending</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Marketing',10,1800)"><div class="mod-check">✓</div><div class="mod-ico">🛒</div><div class="mod-name">Marketing</div><div class="mod-desc">Schedule, repurpose, monitor, and report across all your marketing channels on autopilot.</div><div class="mod-items"><span class="mi">Social content scheduling</span><span class="mi">Content repurposing</span><span class="mi">Brand mention monitoring</span><span class="mi">Campaign performance digests</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Finance & Admin',6,1200)"><div class="mod-check">✓</div><div class="mod-ico">🧾</div><div class="mod-name">Finance & Admin</div><div class="mod-desc">Invoice chasing, expense categorisation, receipt processing and financial summaries automated.</div><div class="mod-items"><span class="mi">Invoice generation & chasing</span><span class="mi">Expense categorisation</span><span class="mi">Receipt processing</span><span class="mi">Weekly financial summaries</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'HR & People Ops',7,1400)"><div class="mod-check">✓</div><div class="mod-ico">🧑‍🤝‍🧑</div><div class="mod-name">HR & People Ops</div><div class="mod-desc">From job posting to onboarding checklists — consistent people processes at any scale.</div><div class="mod-items"><span class="mi">Job post distribution</span><span class="mi">Applicant screening</span><span class="mi">Onboarding workflows</span><span class="mi">Leave & performance tracking</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Project Management',9,1600)"><div class="mod-check">✓</div><div class="mod-ico">🎯</div><div class="mod-name">Project Management</div><div class="mod-desc">Kickoffs, status reports, deadline nudges, and client updates generated and sent automatically.</div><div class="mod-items"><span class="mi">Project kickoff workflows</span><span class="mi">Deadline nudges</span><span class="mi">Status report generation</span><span class="mi">Client update emails</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Customer Success',11,1900)"><span class="mod-badge">Popular</span><div class="mod-check">✓</div><div class="mod-ico">🛎️</div><div class="mod-name">Customer Success</div><div class="mod-desc">Tickets triaged, FAQs answered, churn spotted early, and renewals reminded — automatically.</div><div class="mod-items"><span class="mi">Support ticket triage</span><span class="mi">FAQ auto-responses</span><span class="mi">Churn risk alerts</span><span class="mi">Renewal reminders</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Reporting & Intelligence',8,1500)"><div class="mod-check">✓</div><div class="mod-ico">📊</div><div class="mod-name">Reporting & Intelligence</div><div class="mod-desc">Daily briefings, KPI summaries, competitor monitoring — auto-generated and delivered to you.</div><div class="mod-items"><span class="mi">Daily business briefings</span><span class="mi">KPI dashboard generation</span><span class="mi">Competitor monitoring</span><span class="mi">Weekly performance digests</span></div></div>
-    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'IT & Operations',5,1000)"><div class="mod-check">✓</div><div class="mod-ico">⚙️</div><div class="mod-name">IT & Operations</div><div class="mod-desc">File organisation, licence tracking, backup monitoring, and security alerts handled quietly.</div><div class="mod-items"><span class="mi">File organisation</span><span class="mi">Software licence tracking</span><span class="mi">Backup monitoring</span><span class="mi">Security & uptime alerts</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Communications',8,1500)"><span class="mod-badge">High ROI</span><div class="mod-check">✓</div><div class="mod-ico">📬</div><div class="mod-name">Communications</div><div class="mod-desc">Reads context, understands intent, drafts responses, routes to the right person, and follows up — across email, WhatsApp, and Slack simultaneously.</div><div class="mod-items"><span class="mi">Intent detection & priority triage</span><span class="mi">Context-aware auto-drafting</span><span class="mi">Multi-channel routing</span><span class="mi">Autonomous follow-up sequencing</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Sales & CRM',12,2000)"><span class="mod-badge">Popular</span><div class="mod-check">✓</div><div class="mod-ico">📣</div><div class="mod-name">Sales & CRM</div><div class="mod-desc">A full-time SDR that never sleeps. Scores leads, personalises outreach, pushes deals through the pipeline, and flags deals at risk before they go cold.</div><div class="mod-items"><span class="mi">Behavioural lead scoring</span><span class="mi">Personalised multi-touch outreach</span><span class="mi">Deal velocity monitoring</span><span class="mi">At-risk deal escalation</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Marketing',10,1800)"><div class="mod-check">✓</div><div class="mod-ico">🛒</div><div class="mod-name">Marketing</div><div class="mod-desc">Content created, published, and optimised across every channel. Monitors performance, detects what's working, and adjusts strategy in real time — without a marketing hire.</div><div class="mod-items"><span class="mi">AI content creation & scheduling</span><span class="mi">Performance-based strategy adjustment</span><span class="mi">Brand sentiment monitoring</span><span class="mi">Competitor campaign tracking</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Finance & Admin',6,1200)"><div class="mod-check">✓</div><div class="mod-ico">🧾</div><div class="mod-name">Finance & Admin</div><div class="mod-desc">Cash flow visibility, automated collections, and anomaly detection. Spots irregularities, predicts shortfalls, and acts before small problems become expensive ones.</div><div class="mod-items"><span class="mi">Real-time cash flow monitoring</span><span class="mi">Autonomous invoice & collections</span><span class="mi">Anomaly & fraud detection</span><span class="mi">Financial forecasting briefings</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'HR & People Ops',7,1400)"><div class="mod-check">✓</div><div class="mod-ico">🧑‍🤝‍🧑</div><div class="mod-name">HR & People Ops</div><div class="mod-desc">Hiring, onboarding, and team health — running autonomously. Identifies retention risks before resignation letters arrive on your desk.</div><div class="mod-items"><span class="mi">AI applicant screening & ranking</span><span class="mi">Automated onboarding journeys</span><span class="mi">Retention risk monitoring</span><span class="mi">Performance pulse tracking</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Project Management',9,1600)"><div class="mod-check">✓</div><div class="mod-ico">🎯</div><div class="mod-name">Project Management</div><div class="mod-desc">Tracks every deadline and dependency, intervenes when things slip, and sends clients proactive updates before they ask. Scope creep is caught and converted into revenue.</div><div class="mod-items"><span class="mi">Deadline & dependency monitoring</span><span class="mi">Proactive client communication</span><span class="mi">Scope creep detection</span><span class="mi">Resource utilisation tracking</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Customer Success',11,1900)"><span class="mod-badge">Popular</span><div class="mod-check">✓</div><div class="mod-ico">🛎️</div><div class="mod-name">Customer Success</div><div class="mod-desc">Predicts churn weeks before it happens. Monitors health scores, detects dissatisfaction signals, and deploys intervention campaigns — turning at-risk accounts into loyal ones.</div><div class="mod-items"><span class="mi">Predictive churn modelling</span><span class="mi">Health score monitoring</span><span class="mi">Automated intervention campaigns</span><span class="mi">Advocacy & referral triggers</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'Reporting & Intelligence',8,1500)"><div class="mod-check">✓</div><div class="mod-ico">📊</div><div class="mod-name">Business Intelligence</div><div class="mod-desc">Not just reports — decisions with the analysis already done. Synthesises data across every function, surfaces anomalies, and benchmarks performance against industry trends.</div><div class="mod-items"><span class="mi">Cross-function data synthesis</span><span class="mi">Anomaly & root cause detection</span><span class="mi">Industry benchmarking</span><span class="mi">Executive briefings on demand</span></div></div>
+    <div class="mod" style="--c:#2A5CE6;" onclick="toggleMod(this,'IT & Operations',5,1000)"><div class="mod-check">✓</div><div class="mod-ico">⚙️</div><div class="mod-name">IT & Operations</div><div class="mod-desc">Infrastructure that manages itself. Monitors uptime, detects security anomalies, manages vendor contracts, and flags compliance issues before they become incidents.</div><div class="mod-items"><span class="mi">Uptime & performance monitoring</span><span class="mi">Security anomaly detection</span><span class="mi">Vendor & licence lifecycle management</span><span class="mi">Compliance & audit trail automation</span></div></div>
   </div>
   <div class="calc-box reveal">
     <div class="calc-header">
@@ -555,10 +562,21 @@ footer p{font-size:12px;color:var(--text-soft);}
       </div>
       <button class="calc-reset" onclick="resetMods()" id="calcResetBtn" style="display:none;">Clear all</button>
     </div>
+    <div class="calc-mini-grid">
+      <button class="calc-mini-btn" id="mini-0" onclick="toggleModByIndex(0)"><span class="mini-ico">📬</span>Communications<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-1" onclick="toggleModByIndex(1)"><span class="mini-ico">📣</span>Sales & CRM<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-2" onclick="toggleModByIndex(2)"><span class="mini-ico">🛒</span>Marketing<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-3" onclick="toggleModByIndex(3)"><span class="mini-ico">🧾</span>Finance & Admin<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-4" onclick="toggleModByIndex(4)"><span class="mini-ico">🧑‍🤝‍🧑</span>HR & People<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-5" onclick="toggleModByIndex(5)"><span class="mini-ico">🎯</span>Projects<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-6" onclick="toggleModByIndex(6)"><span class="mini-ico">🛎️</span>Customer Success<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-7" onclick="toggleModByIndex(7)"><span class="mini-ico">📊</span>Intelligence<span class="mini-check">✓</span></button>
+      <button class="calc-mini-btn" id="mini-8" onclick="toggleModByIndex(8)"><span class="mini-ico">⚙️</span>IT & Ops<span class="mini-check">✓</span></button>
+    </div>
     <div class="calc-selected" id="calcChips">
       <div class="calc-empty-state">
         <div class="calc-empty-provocative">Every day without automation costs you.</div>
-        <div class="calc-empty-hint">Tap a module above to see exactly how much.</div>
+        <div class="calc-empty-hint">Select modules above or below to calculate your ROI.</div>
       </div>
     </div>
     <div class="calc-results" id="calcResultsBox" style="opacity:0.3;pointer-events:none;">
@@ -605,15 +623,15 @@ footer p{font-size:12px;color:var(--text-soft);}
 <div class="sec reveal">
   <div class="roi-box">
     <div>
-      <div class="roi-eye">The Numbers</div>
+      <div class="roi-eye">The Business Case</div>
       <h2 class="roi-h">Real ROI.<br><em>Not theory.</em></h2>
-      <p class="roi-sub">Businesses running OpenClaw automations report saving 8–15 hours per week per function. At a typical SMB loaded labour cost, that's meaningful money back every month — often within 6 months of setup.</p>
+      <p class="roi-sub">68% of SMBs report significant productivity gains after AI automation. Operational costs drop 25–45%. The businesses moving now aren't just saving time — they're building a structural advantage that compounds every month.</p>
     </div>
     <div class="roi-nums">
-      <div class="rn"><div class="rn-big counter" data-target="50" data-suffix="%">0%</div><div class="rn-l">Digital workflows automated on average</div></div>
-      <div class="rn"><div class="rn-big counter" data-target="15" data-suffix="h+">0h+</div><div class="rn-l">Saved per week per module</div></div>
-      <div class="rn"><div class="rn-big counter" data-target="50" data-prefix="$">$0</div><div class="rn-l">Avg. monthly AI running cost</div></div>
-      <div class="rn"><div class="rn-big">&lt;6mo</div><div class="rn-l">Typical payback period</div></div>
+      <div class="rn"><div class="rn-big counter" data-target="68" data-suffix="%">0%</div><div class="rn-l">of SMBs report productivity gains after automation</div></div>
+      <div class="rn"><div class="rn-big counter" data-target="45" data-suffix="%">0%</div><div class="rn-l">reduction in operational costs within 12 months</div></div>
+      <div class="rn"><div class="rn-big counter" data-target="200" data-suffix="h">0h</div><div class="rn-l">lost per employee per year to automatable work</div></div>
+      <div class="rn"><div class="rn-big">&lt;6mo</div><div class="rn-l">typical payback period for full deployment</div></div>
     </div>
   </div>
 </div>
@@ -789,8 +807,33 @@ function showIndustry(id,btn){
   btn.classList.add('active');document.getElementById('ind-'+id).classList.add('active');
 }
 
-let selectedMods=[],stickyExpanded=false;
+var selectedMods=[], stickyExpanded=false;
 function toggleStickyCalc(){stickyExpanded=!stickyExpanded;document.getElementById('stickyCalc').classList.toggle('expanded',stickyExpanded);}
+
+var MOD_DATA=[
+  {name:'Communications',hours:8,saving:1500},
+  {name:'Sales & CRM',hours:12,saving:2000},
+  {name:'Marketing',hours:10,saving:1800},
+  {name:'Finance & Admin',hours:6,saving:1200},
+  {name:'HR & People Ops',hours:7,saving:1400},
+  {name:'Project Management',hours:9,saving:1600},
+  {name:'Customer Success',hours:11,saving:1900},
+  {name:'Reporting & Intelligence',hours:8,saving:1500},
+  {name:'IT & Operations',hours:5,saving:1000}
+];
+function syncMiniButtons(){
+  MOD_DATA.forEach(function(m,i){
+    var btn=document.getElementById('mini-'+i);
+    if(!btn)return;
+    var isSelected=selectedMods.some(function(s){return s.name===m.name;});
+    btn.classList.toggle('active',isSelected);
+  });
+}
+function toggleModByIndex(i){
+  var modCards=document.querySelectorAll('.mod');
+  if(modCards[i])modCards[i].click();
+}
+
 function toggleMod(el,name,hours,saving){
   const idx=selectedMods.findIndex(m=>m.name===name);
   if(idx>-1){selectedMods.splice(idx,1);el.classList.remove('selected');}
@@ -834,6 +877,9 @@ function updateCalc(){
     document.getElementById('calcSaving').innerHTML=`$${(monthlyValue/1000).toFixed(1)}<span class="a">k</span>`;
     document.getElementById('calcPayback').textContent=paybackStr;
   }
+
+  // sync mini buttons
+  syncMiniButtons();
 
   // sticky bar
   const bar=document.getElementById('stickyCalc');
@@ -886,7 +932,7 @@ function submitWaitlist(){
   document.getElementById('waitlistSuccess').style.display='flex';
 }
 // ── DIAGRAM ANIMATION ──
-const SCENARIOS = [
+var SCENARIOS = [
   {
     icon:'💬', app:'WhatsApp', channel:'New lead inquiry', color:'#25D366', glow:'rgba(37,211,102,.18)',
     body:'"Hi, I saw your listing on PropertyGuru — is 32 Clementi Ave still available?"',
@@ -919,10 +965,10 @@ const SCENARIOS = [
   }
 ];
 
-const ICON_ORDER = [0, 3, 1, 4, 2, 5];
-let diagStep = 0;
-let diagRunning = false;
-let ICON_SVG_X = [];
+var ICON_ORDER = [0, 3, 1, 4, 2, 5];
+var diagStep = 0;
+var diagRunning = false;
+var ICON_SVG_X = [];
 
 function computeIconPositions() {
   const svg = document.getElementById('diagramSvg');
